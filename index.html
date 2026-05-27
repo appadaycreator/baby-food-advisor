@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-TXQGZRF9');</script>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-TXQGZRF9');
+/* Round#32: コンフェティ演出 */
+function launchConfetti(){var colors=['#059669','#fbbf24','#6366f1','#10b981','#f59e0b','#ef4444','#3b82f6'];for(var i=0;i<60;i++){var d=document.createElement('div');var sz=6+Math.random()*8;d.style.cssText='position:fixed;top:-20px;left:'+Math.random()*100+'%;width:'+sz+'px;height:'+sz+'px;background:'+colors[i%7]+';border-radius:'+(Math.random()>0.5?'50%':'2px')+';animation:svc-confetti-fall '+(1.2+Math.random()*1.5)+'s linear '+(Math.random()*0.5)+'s forwards;z-index:9999;pointer-events:none;';document.body.appendChild(d);setTimeout(function(el){return function(){el.remove();};}(d),3500);}}
+
+</script>
 <!-- phase8-schema-enhanced -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -70,6 +74,9 @@ button, .btn, .btn-primary, .option-btn, [role="button"] { min-height: 48px; min
   [id*="result"],[id*="output"],[id*="advice"],[id*="diagnosis"],[class*="result"]{display:block!important}
   a[href]::after{content:none!important}
 }
+
+/* Round#32: コンフェティアニメーション */
+@keyframes svc-confetti-fall{0%{transform:translateY(0) rotate(0deg);opacity:1;}100%{transform:translateY(100vh) rotate(720deg);opacity:0;}}
 </style>
 <script type="application/ld+json">
 {
@@ -268,15 +275,15 @@ button, .btn, .btn-primary, .option-btn, [role="button"] { min-height: 48px; min
     <div class="card p-4 mb-4 bg-pink-50 border border-pink-200">
       <h3 class="font-bold text-pink-800 mb-2 text-sm">🌟 かわいいわが子にオーディション？</h3>
       <p class="text-xs text-gray-600 mb-3">国内最大手の赤ちゃんプロダクション。テレビ・CM・雑誌で活躍できるチャンス！</p>
-      <a href="https://px.a8.net/svt/ejp?a8mat=4B3WJ6+CROYCQ+1E2S+6C9LE" target="_blank" rel="nofollow" class="aff-btn" style="background:#db2777;color:white;">
+      <a href="https://px.a8.net/svt/ejp?a8mat=4B3WJ6+CROYCQ+1E2S+6C9LE" target="_blank" rel="nofollow noopener noreferrer" class="aff-btn" style="background:#db2777;color:white;">
         赤ちゃんモデル大募集！【テアトルアカデミー】 →
       </a>
       <img border="0" width="1" height="1" src="https://www14.a8.net/0.gif?a8mat=4B3WJ6+CROYCQ+1E2S+6C9LE" alt="" loading="lazy">
-      <a href="https://px.a8.net/svt/ejp?a8mat=4B3WJ8+98VMI2+3PSY+I05C2" target="_blank" rel="nofollow" class="aff-btn" style="background:#16a34a;color:white;margin-top:8px;">
+      <a href="https://px.a8.net/svt/ejp?a8mat=4B3WJ8+98VMI2+3PSY+I05C2" target="_blank" rel="nofollow noopener noreferrer" class="aff-btn" style="background:#16a34a;color:white;margin-top:8px;">
         白浮きしない・お湯で落とせる【アロベビー UV&アウトドアミスト】 →
       </a>
       <img border="0" width="1" height="1" src="https://www11.a8.net/0.gif?a8mat=4B3WJ8+98VMI2+3PSY+I05C2" alt="" loading="lazy">
-      <a href="https://px.a8.net/svt/ejp?a8mat=4B3WJ8+9BUSIY+5CLW+5YJRM" target="_blank" rel="nofollow" class="aff-btn" style="background:#0891b2;color:white;margin-top:8px;">
+      <a href="https://px.a8.net/svt/ejp?a8mat=4B3WJ8+9BUSIY+5CLW+5YJRM" target="_blank" rel="nofollow noopener noreferrer" class="aff-btn" style="background:#0891b2;color:white;margin-top:8px;">
         【子どもお墨付き】累計300万食！冷凍幼児食【モグモ】 →
       </a>
       <img border="0" width="1" height="1" src="https://www17.a8.net/0.gif?a8mat=4B3WJ8+9BUSIY+5CLW+5YJRM" alt="" loading="lazy">
@@ -479,6 +486,7 @@ function pick(i, val, key) {
 }
 
 function showResults() {
+  launchConfetti();
   var ageIdx = ans.age ? ans.age.i : 0;
   var stageKey = ['early','middle','late','finish'][ageIdx] || 'early';
   var data = stageData[stageKey];
