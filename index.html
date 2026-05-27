@@ -77,7 +77,10 @@ button, .btn, .btn-primary, .option-btn, [role="button"] { min-height: 48px; min
 
 /* Round#32: コンフェティアニメーション */
 @keyframes svc-confetti-fall{0%{transform:translateY(0) rotate(0deg);opacity:1;}100%{transform:translateY(100vh) rotate(720deg);opacity:0;}}
-</style>
+
+    /* アクセシビリティ: キーボードフォーカスリング */
+    button:focus-visible,[tabindex]:focus-visible,a:focus-visible,[role=button]:focus-visible{outline:3px solid #6366f1;outline-offset:2px;}
+  </style>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -640,20 +643,21 @@ function restart() {
     
     <!-- phase8-social-proof -->
     <div class="card p-5 mb-4">
-      <h3 class="font-bold text-gray-800 mb-3 text-sm">⭐ 利用者の声</h3>
+      <h3 class="font-bold text-gray-800 mb-3 text-sm">💬 こんなふうに活用されています</h3>
       <div class="space-y-3">
         <div class="bg-gray-50 rounded-lg p-3">
-          <p class="text-xs text-gray-700">「すぐに結果が出て使いやすかったです。友人にも勧めました！」</p>
-          <p class="text-xs text-gray-400 mt-1">— 田中さん（30代・会社員）★★★★★</p>
+          <p class="text-xs text-gray-700"><span style="font-size:1.1em;">👶</span> <strong>月齢別の食材確認</strong></p>
+          <p class="text-xs text-gray-500 mt-1">7ヶ月から離乳食を始めた際、月齢に合った食材の目安として活用しました。</p>
         </div>
         <div class="bg-gray-50 rounded-lg p-3">
-          <p class="text-xs text-gray-700">「無料でここまで詳しく診断できるとは思いませんでした。」</p>
-          <p class="text-xs text-gray-400 mt-1">— 佐藤さん（40代・主婦）★★★★★</p>
+          <p class="text-xs text-gray-700"><span style="font-size:1.1em;">🥕</span> <strong>アレルギー食材の確認</strong></p>
+          <p class="text-xs text-gray-500 mt-1">初めての野菜デビュー前に月齢適否を確認でき、安心して進められました。</p>
         </div>
         <div class="bg-gray-50 rounded-lg p-3">
-          <p class="text-xs text-gray-700">「登録不要でサクッと使えるのが良いです。また利用します。」</p>
-          <p class="text-xs text-gray-400 mt-1">— 山本さん（20代・学生）★★★★☆</p>
+          <p class="text-xs text-gray-700"><span style="font-size:1.1em;">📊</span> <strong>ステージ移行の判断</strong></p>
+          <p class="text-xs text-gray-500 mt-1">2回食から3回食への移行タイミングの目安を把握するのに役立てました。</p>
         </div>
+        <p class="text-[10px] text-gray-400 mt-2 text-right">※ご利用イメージです</p>
       </div>
       <div class="flex gap-2 mt-4">
         <a href="https://line.me/R/share?text=離乳食診断月齢別おすすめ食材・レシピを提案%20https://appadaycreator.com/baby-food-advisor/" target="_blank" rel="noopener"
@@ -671,7 +675,13 @@ function restart() {
            style="flex:1;display:block;text-align:center;background:#475569;color:white;padding:8px;border-radius:8px;font-size:12px;font-weight:bold;cursor:pointer;border:none;">
           📄 PDFで保存
         </button>
+
+        <button onclick="(function(){var t=document.title+' '+location.href;if(navigator.clipboard){navigator.clipboard.writeText(t).then(function(){var b=document.getElementById('bfa-copy-toast');if(b){b.style.display='block';setTimeout(function(){b.style.display='none';},1800);}});}else{var a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();document.execCommand('copy');document.body.removeChild(a);var b2=document.getElementById('bfa-copy-toast');if(b2){b2.style.display='block';setTimeout(function(){b2.style.display='none';},1800);}}})()"
+           style="flex:1;display:block;text-align:center;background:#f59e0b;color:white;padding:8px;border-radius:8px;font-size:12px;font-weight:bold;cursor:pointer;border:none;">
+          📋 テキストをコピー
+        </button>
       </div>
+      <div id="bfa-copy-toast" style="display:none;text-align:center;margin-top:6px;font-size:11px;color:#059669;font-weight:bold;">✅ コピーしました</div>
     </div>
     <!-- phase9-related-links -->
     <div class="card p-5 mb-4">
