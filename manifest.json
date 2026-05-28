@@ -4,7 +4,7 @@
   "description": "赤ちゃんの月齢・アレルギー・好みから離乳食の食材とレシピを無料提案。5〜18ヶ月対応。",
   "start_url": "/baby-food-advisor/",
   "display": "standalone",
-  "background_color": "#f8faf9",
+  "background_color": "#ffffff",
   "theme_color": "#7c3aed",
   "lang": "ja",
   "icons": [
