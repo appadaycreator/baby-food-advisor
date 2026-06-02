@@ -494,14 +494,16 @@ function pick(i, val, key) {
       renderQ();
     } else {
       show('loading');
-      gtag('event', 'quiz_complete', { event_category: 'engagement' });
+      try { gtag('event', 'quiz_complete', { event_category: 'engagement' }); } catch(e) {}
       setTimeout(showResults, 1600);
     }
   }, 300);
 }
 
+function launchConfetti(){var colors=['#db2777','#fbbf24','#34d399','#60a5fa','#f472b6','#a78bfa','#fb923c'];for(var i=0;i<60;i++){var d=document.createElement('div');var sz=6+Math.random()*8;d.style.cssText='position:fixed;top:-20px;left:'+Math.random()*100+'%;width:'+sz+'px;height:'+sz+'px;background:'+colors[i%7]+';border-radius:'+(Math.random()>0.5?'50%':'2px')+';animation:svc-confetti-fall '+(1.2+Math.random()*1.5)+'s linear '+(Math.random()*0.5)+'s forwards;z-index:9999;pointer-events:none;';document.body.appendChild(d);setTimeout(function(el){return function(){el.remove();};}(d),3500);}}
+
 function showResults() {
-  launchConfetti();
+  try { launchConfetti(); } catch(e) {}
   var ageIdx = ans.age ? ans.age.i : 0;
   var stageKey = ['early','middle','late','finish'][ageIdx] || 'early';
   var data = stageData[stageKey];
