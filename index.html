@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+<!-- Consent Mode v2 -->
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{'analytics_storage':'denied','ad_storage':'denied','ad_user_data':'denied','ad_personalization':'denied','wait_for_update':500});(function(){try{var k='cookie-consent-v2',o='cookie-consent';var c=localStorage.getItem(k);if(!c&&localStorage.getItem(o)==='1')c='granted';if(c){var s=c==='granted'?'granted':'denied';gtag('consent','update',{'analytics_storage':s,'ad_storage':s,'ad_user_data':s,'ad_personalization':s});}}catch(e){}})();</script>
+<!-- End Consent Mode v2 -->
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({"gtm.start":
 new Date().getTime(),event:"gtm.js"});var f=d.getElementsByTagName(s)[0],
@@ -16,9 +19,9 @@ j=d.createElement(s),dl=l!="dataLayer"?"&l="+l:"";j.async=true;j.src=
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#7c3aed">
-<meta name="description" content="赤ちゃんの月齢・アレルギー・好みから離乳食の食材とレシピを無料提案。5〜18ヶ月対応。登録不要・完全無料でご利用いただけます。スマホ・PC対応。">
-<meta name="keywords" content="離乳食,ベビーフード,月齢別,おすすめ食材,アドバイザー,赤ちゃん,食材診断">
+<meta name="theme-color" content="#10B981">
+<meta name="description" content="赤ちゃんの月齢・アレルギー・食べ具合から離乳食の食材とレシピを無料診断。初期・中期・後期・完了期ごとにおすすめ食材リスト・アレルギー注意情報・栄養バランスアドバイスを自動提案します。登録不要でブラウザ内で完全処理。">
+<meta name="author" content="AppADayCreator">
 <meta property="og:title" content="離乳食診断【無料】月齢別おすすめ食材・レシピを提案">
 <meta property="og:description" content="赤ちゃんの月齢・食べ具合・アレルギーから最適な離乳食メニューをアドバイス。食材宅配サービスもご紹介。">
 <meta property="og:type" content="website">
@@ -42,22 +45,60 @@ j=d.createElement(s),dl=l!="dataLayer"?"&l="+l:"";j.async=true;j.src=
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8427583028015858" crossorigin="anonymous"></script>
 
 <script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
 <style>
-  body { background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 50%, #fbcfe8 100%); min-height: 100vh; }
+  body { background: #f8fafc; min-height: 100vh; font-family:-apple-system,BlinkMacSystemFont,'Hiragino Kaku Gothic ProN','Noto Sans JP',sans-serif; }
   .card { background: white; border-radius: 1rem; box-shadow: 0 4px 24px rgba(0,0,0,0.09); }
-  .btn-primary { background: #db2777; color: white; border: none; border-radius: 0.75rem; padding: 0.875rem 2rem; font-size: 1.05rem; font-weight: 700; cursor: pointer; transition: all 0.2s; width: 100%; display: block; text-align: center; }
-  .btn-primary:hover { background: #be185d; transform: translateY(-1px); }
-  .btn-secondary { background: #6b7280; color: white; border: none; border-radius: 0.75rem; padding: 0.875rem 2rem; font-size: 1.05rem; font-weight: 700; cursor: pointer; transition: all 0.2s; width: 100%; display: block; text-align: center; }
+  .btn-primary { background: #10B981; color: white; border: none; border-radius: 2rem; padding: 1rem 2rem; font-size: 1.05rem; font-weight: 700; cursor: pointer; transition: all 0.2s; width: 100%; display: block; text-align: center; box-shadow: 0 4px 16px rgba(16,185,129,0.35); }
+  .btn-primary:hover { background: #059669; transform: translateY(-2px); box-shadow: 0 6px 24px rgba(16,185,129,0.45); }
+  .btn-secondary { background: #6b7280; color: white; border: none; border-radius: 2rem; padding: 0.875rem 2rem; font-size: 1.05rem; font-weight: 700; cursor: pointer; transition: all 0.2s; width: 100%; display: block; text-align: center; }
   .option-btn { border: 2px solid #e5e7eb; border-radius: 0.75rem; padding: 0.875rem 1rem; cursor: pointer; transition: all 0.2s; background: white; width: 100%; text-align: left; margin-bottom: 0.625rem; font-size: 0.95rem; }
-  .option-btn:hover, .option-btn.selected { border-color: #db2777; background: #fdf2f8; font-weight: 600; }
+  .option-btn:hover, .option-btn.selected { border-color: #10B981; background: #ECFDF5; font-weight: 600; color: #065F46; }
   .screen { display: none; }
   .screen.active { display: block; }
-  .progress-track { background: #fce7f3; border-radius: 9999px; height: 8px; }
-  .progress-bar { background: #db2777; height: 8px; border-radius: 9999px; transition: width 0.4s ease; }
-  .food-tag { display: inline-block; background: #fdf2f8; color: #be185d; border: 1px solid #f9a8d4; border-radius: 9999px; padding: 0.25rem 0.75rem; font-size: 0.8rem; margin: 0.2rem; }
+  .progress-track { background: #D1FAE5; border-radius: 9999px; height: 8px; }
+  .progress-bar { background: #10B981; height: 8px; border-radius: 9999px; transition: width 0.4s ease; }
+  .food-tag { display: inline-block; background: #ECFDF5; color: #065F46; border: 1px solid #A7F3D0; border-radius: 9999px; padding: 0.25rem 0.75rem; font-size: 0.8rem; margin: 0.2rem; }
   .avoid-tag { display: inline-block; background: #fff1f2; color: #e11d48; border: 1px solid #fecdd3; border-radius: 9999px; padding: 0.25rem 0.75rem; font-size: 0.8rem; margin: 0.2rem; }
+  @media (max-width: 640px) {
+    .food-tag, .avoid-tag { padding: 0.35rem 1rem; font-size: 0.9rem; margin: 0.3rem; }
+  }
+  #res-stage-card { position: relative; border-left: 5px solid #10B981; padding-left: 1.2rem !important; background: linear-gradient(135deg, #ECFDF5 0%, #F0FDF4 100%); }
+  #res-stage-card.stage-early { border-left-color: #22c55e; }
+  #res-stage-card.stage-middle { border-left-color: #10B981; }
+  #res-stage-card.stage-late { border-left-color: #eab308; }
+  #res-stage-card.stage-finish { border-left-color: #F87171; }
+  #res-stage-card h2 { font-size: 1.5rem; font-weight: 700; margin-top: 0; }
   .aff-btn { display: block; width: 100%; border-radius: 0.75rem; padding: 0.875rem 1rem; font-weight: 700; text-align: center; text-decoration: none; font-size: 0.95rem; transition: all 0.2s; margin-bottom: 0.75rem; }
   .aff-btn:hover { transform: translateY(-1px); opacity: 0.92; }
+  /* ===== NEW SERVICE PAGE STYLES ===== */
+  .svc-header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.97);backdrop-filter:blur(8px);border-bottom:1px solid #E5E7EB;box-shadow:0 1px 8px rgba(0,0,0,.06);}
+  .svc-header-in{display:flex;align-items:center;justify-content:space-between;padding:12px 20px;max-width:900px;margin:0 auto;gap:12px;}
+  .svc-logo{display:flex;align-items:center;gap:8px;font-size:15px;font-weight:800;color:#1F2937;}
+  .svc-logo img{width:26px;height:26px;}
+  .svc-nav{display:flex;gap:16px;}
+  .svc-nav a{font-size:12px;color:#6B7280;font-weight:500;}
+  .svc-nav a:hover{color:#10B981;}
+  .svc-cta-head{background:#F87171;color:#fff;font-size:12px;font-weight:700;padding:8px 16px;border-radius:20px;white-space:nowrap;text-decoration:none;transition:.2s;}
+  .svc-cta-head:hover{background:#EF4444;}
+  .svc-hero{background:linear-gradient(135deg,#F0FDF4,#ECFDF5);padding:40px 20px 32px;}
+  .svc-hero-in{max-width:900px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center;}
+  .svc-hero-title{font-size:28px;font-weight:800;color:#1F2937;line-height:1.3;margin-bottom:12px;}
+  .svc-hero-sub{font-size:14px;color:#4B5563;margin-bottom:20px;}
+  .svc-hero-stats{display:flex;gap:16px;flex-wrap:wrap;}
+  .svc-hero-stat{background:#fff;border:1px solid #A7F3D0;border-radius:12px;padding:10px 14px;text-align:center;min-width:80px;}
+  .svc-hero-stat-num{font-size:18px;font-weight:800;color:#10B981;}
+  .svc-hero-stat-label{font-size:11px;color:#6B7280;margin-top:2px;}
+  .svc-hero-photo{width:100%;max-height:320px;object-fit:cover;border-radius:20px;box-shadow:0 4px 24px rgba(0,0,0,.1);}
+  .svc-photo-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:16px 0;}
+  .svc-photo-grid img{width:100%;height:80px;object-fit:cover;border-radius:10px;}
+  .res-photo-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0;}
+  .res-photo-strip img{width:100%;height:90px;object-fit:cover;border-radius:10px;}
+  @media(max-width:640px){
+    .svc-hero-in{grid-template-columns:1fr;}
+    .svc-nav{display:none;}
+    .svc-hero-title{font-size:22px;}
+  }
 
 /* Phase 8: Mobile Optimization */
 input, select, textarea { font-size: 16px !important; }
@@ -81,26 +122,25 @@ button, .btn, .btn-primary, .option-btn, [role="button"] { min-height: 48px; min
 @keyframes svc-confetti-fall{0%{transform:translateY(0) rotate(0deg);opacity:1;}100%{transform:translateY(100vh) rotate(720deg);opacity:0;}}
 
     /* アクセシビリティ: キーボードフォーカスリング */
-    button:focus-visible,[tabindex]:focus-visible,a:focus-visible,[role=button]:focus-visible{outline:3px solid #7c3aed;outline-offset:2px;}
+    button:focus-visible,[tabindex]:focus-visible,a:focus-visible,[role=button]:focus-visible{outline:3px solid #10B981;outline-offset:2px;}
   .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;}
 .related-link{padding:10px;text-align:center;border:1px solid #ddd;border-radius:4px;text-decoration:none;color:#333;display:block;transition:background 0.15s;}
 .related-link:hover{background:#f5f5f5;}
 
 /* AdSense unfilled: collapse empty ad slots */
 ins.adsbygoogle[data-ad-status="unfilled"]{display:none!important;margin:0!important;height:0!important}
-</style>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {"@type": "Question", "name": "このサービスは何ですか？", "acceptedAnswer": {"@type": "Answer", "text": "無料の診断ツールです。簡単な質問にお答えいただくだけで、最適なアドバイスを提供します。"}}, {"@type": "Question", "name": "料金はかかりますか？", "acceptedAnswer": {"@type": "Answer", "text": "完全無料です。登録や会員登録も不要。いますぐお試しいただけます。"}}, {"@type": "Question", "name": "個人情報は保護されますか？", "acceptedAnswer": {"@type": "Answer", "text": "はい。お客様の個人情報は厳重に管理され、第三者と共有されることはありません。"}}, {"@type": "Question", "name": "どのような人が使っていますか？", "acceptedAnswer": {"@type": "Answer", "text": "初心者から専門家まで、多くの方にご利用いただいています。特に決断が必要な場面で活躍します。"}}, {"@type": "Question", "name": "結果をシェアできますか？", "acceptedAnswer": {"@type": "Answer", "text": "はい、診断結果はスクリーンショットやURLで友人・家族とシェアできます。"}}, {"@type": "Question", "name": "有料プランはありますか？", "acceptedAnswer": {"@type": "Answer", "text": "いいえ、すべての機能を完全無料でご利用いただけます。"}}, {"@type": "Question", "name": "どのような人が使っていますか？", "acceptedAnswer": {"@type": "Answer", "text": "初心者から専門家まで、多くの方にご利用いただいています。特に決断が必要な場面で活躍します。"}}, {"@type": "Question", "name": "結果をシェアできますか？", "acceptedAnswer": {"@type": "Answer", "text": "はい、診断結果はスクリーンショットやURLで友人・家族とシェアできます。"}}, {"@type": "Question", "name": "有料プランはありますか？", "acceptedAnswer": {"@type": "Answer", "text": "いいえ、すべての機能を完全無料でご利用いただけます。"}}
-  ]
-}
-</script>
-<script type="application/ld+json">
 
-</script>
+/* サイトヘッダー */
+.site-hdr{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);border-bottom:1px solid #e2e8f0;padding:10px 16px;box-shadow:0 1px 4px rgba(0,0,0,.06);}
+.site-hdr-in{max-width:640px;margin:0 auto;display:flex;align-items:center;gap:8px;}
+.site-hdr-back{font-size:12px;color:#64748b;text-decoration:none;padding:5px 10px;border-radius:8px;transition:.15s;}
+.site-hdr-back:hover{background:#f3f4f6;}
+.site-hdr-title{flex:1;font-size:13px;font-weight:700;text-align:center;color:#1e293b;}
+.site-hdr-badge{font-size:11px;background:#059669;color:#fff;font-weight:700;padding:3px 10px;border-radius:20px;}
+
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"離乳食はいつから始めればよいですか？","acceptedAnswer":{"@type":"Answer","text":"一般的に生後5〜6ヶ月頃が目安です。首がしっかり座り、大人の食事に興味を示すようになったら始めどきのサインです。本ツールでは月齢ごとの適切な食材と進め方を提案します。"}},{"@type":"Question","name":"アレルギーが心配な場合はどうすればよいですか？","acceptedAnswer":{"@type":"Answer","text":"初めての食材は1種類ずつ、少量から午前中に試すことが基本です。本ツールで選択したアレルギーに応じた注意事項とアドバイスを表示します。重篤なアレルギーがある場合は必ずかかりつけ医にご相談ください。"}},{"@type":"Question","name":"離乳食の固さはどう変えていけばよいですか？","acceptedAnswer":{"@type":"Answer","text":"初期（5〜6ヶ月）はなめらかなペースト状、中期（7〜8ヶ月）は豆腐くらいの固さ、後期（9〜11ヶ月）は歯ぐきでつぶせるバナナくらい、完了期（12ヶ月〜）はやわらかい固形食が目安です。"}},{"@type":"Question","name":"入力したデータはサーバーに送られますか？","acceptedAnswer":{"@type":"Answer","text":"いいえ。すべての処理はブラウザ内で完結し、入力内容はサーバーへ一切送信されません。個人情報の漏洩リスクはありません。"}},{"@type":"Question","name":"市販のベビーフードと手作りはどちらがよいですか？","acceptedAnswer":{"@type":"Answer","text":"どちらも正解です。手作りは食材を把握しやすい利点があり、市販品は衛生管理が徹底されており忙しいときに便利です。本ツールでは調理の手間への回答に応じた時短アドバイスもご提案します。"}},{"@type":"Question","name":"離乳食診断を使うベストなタイミングはいつですか？","acceptedAnswer":{"@type":"Answer","text":"新しい月齢ステージに移行する前・初めての食材を試す前・「食べてくれない」などの悩みが出たタイミングが特に効果的です。月齢の節目（7ヶ月・9ヶ月・12ヶ月）ごとに診断し直すことで、その時期に合った最新のアドバイスを受けられます。"}},{"@type":"Question","name":"アレルギーがあっても診断結果は参考になりますか？","acceptedAnswer":{"@type":"Answer","text":"はい。アレルギーの種類（卵・乳製品・小麦など）を選択すると、その食材を除いた安全なおすすめ食材リストとアレルギー注意事項が表示されます。ただし重篤なアレルギーがある場合は、必ずかかりつけの小児科医・アレルギー専門医にご相談ください。"}}]}</script>
+
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -108,7 +148,51 @@ ins.adsbygoogle[data-ad-status="unfilled"]{display:none!important;margin:0!impor
   "name": "appadaycreator",
   "url": "https://appadaycreator.com",
   "logo": "https://appadaycreator.com/logo.png",
-  "description": "無料Webサービス・診断ツール 180種類以上を運営"
+  "description": "無料Webサービス・診断ツール 180種類以上を運営",
+  "sameAs": [
+    "https://twitter.com/appadaycreate",
+    "https://appadaycreator.com"
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "赤ちゃんの月齢別離乳食の進め方ガイド",
+  "description": "赤ちゃんの月齢に応じた離乳食の正しい進め方を5つのステップで解説。初期から完了期までの食材・固さ・栄養情報を提供します。",
+  "step": [
+    {
+      "@type": "HowToStep",
+      "position": "1",
+      "name": "離乳食初期（5〜6ヶ月）で慣らす",
+      "text": "首がしっかり座り、大人の食事に興味を示す時期。10倍がゆなめらかペースト状から開始。1日1回・母乳やミルクが主体です。"
+    },
+    {
+      "@type": "HowToStep",
+      "position": "2",
+      "name": "離乳食中期（7〜8ヶ月）で食材を増やす",
+      "text": "舌でつぶせる豆腐くらいの固さに。1日2回・白身魚・豆腐・ヨーグルトなどたんぱく質を加える。食材の種類を増やす時期です。"
+    },
+    {
+      "@type": "HowToStep",
+      "position": "3",
+      "name": "離乳食後期（9〜11ヶ月）で手づかみへ",
+      "text": "歯ぐきでつぶせるバナナより少し固い固さ。1日3回・軟飯・刻み野菜・ほぐした肉や魚。手づかみ食べが始まります。"
+    },
+    {
+      "@type": "HowToStep",
+      "position": "4",
+      "name": "離乳食完了期（12〜18ヶ月）で卒業へ",
+      "text": "やわらかく調理した大人食に近づける時期。1日3食・栄養バランスを意識し、塩分は最小限に。ほぼ大人と同じ食事に向かいます。"
+    },
+    {
+      "@type": "HowToStep",
+      "position": "5",
+      "name": "アレルギーに注意して実践する",
+      "text": "新しい食材は1種類ずつ・少量から午前中に試す。特定原材料7品目（卵・乳・小麦・えび・かに・ピーナッツ・そば）は慎重に。"
+    }
+  ]
 }
 </script>
 <meta property="og:type" content="website">
@@ -145,57 +229,207 @@ ins.adsbygoogle[data-ad-status="unfilled"]{display:none!important;margin:0!impor
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"HowTo","name":"離乳食診断【無料】月齢別おすすめ食材・レシピを提案の使い方","step":[{"@type":"HowToStep","position":1,"name":"必要事項を入力する","text":"フォームに必要な情報（数値・選択肢・条件）を入力または選択する"},{"@type":"HowToStep","position":2,"name":"診断・計算を実行する","text":"「診断する」「計算する」または「確認する」ボタンを押して結果を取得する"},{"@type":"HowToStep","position":3,"name":"結果・分析を確認する","text":"表示された診断結果・計算結果・グラフをじっくり確認する"},{"@type":"HowToStep","position":4,"name":"アドバイスを活用する","text":"結果に基づくアドバイスや提案を日常生活に取り入れる"},{"@type":"HowToStep","position":5,"name":"定期的に再チェックする","text":"生活変化に応じて定期的に再診断して進捗を追跡する"}]}</script>
 
 <style>
-@media(max-width:480px){button,[class*=btn]{min-height:48px!important;font-size:15px!important;}input,select,textarea{font-size:16px!important;min-height:44px!important;}[class*=card],[class*=max-w]{padding:16px!important;}}
+@media(max-width:480px){button,[class*=btn]{min-height:48px!important;font-size:15px!important;}input,select,textarea{font-size:16px!important;min-height:44px!important;}[class*=card],[class*=max-w]{padding:16px!important;}#mobile-cta{display:block!important;}}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ホーム","item":"https://appadaycreator.com/"},{"@type":"ListItem","position":2,"name":"診断/アドバイス","item":"https://appadaycreator.com/category/advisor/"},{"@type":"ListItem","position":3,"name":"離乳食診断月齢別おすすめ食材・レシピを提案","item":"https://appadaycreator.com/baby-food-advisor/"}]}</script>
 </head>
-<body class="font-sans"><a href="#main" class="sr-only">本文へスキップ</a>
+<body class="font-sans">
+<!-- Service Page Header -->
+<header class="svc-header">
+  <div class="svc-header-in">
+    <div class="svc-logo">
+      <img src="assets/icons/split/01-02.png" alt="Baby Food Advisor">
+      <span>Baby Food Advisor</span>
+    </div>
+    <nav class="svc-nav">
+      <a href="lp/">サービス紹介</a>
+      <a href="#main">診断する</a>
+      <a href="lp/#faq">よくある質問</a>
+    </nav>
+    <a href="lp/" class="svc-cta-head">LPを見る</a>
+  </div>
+</header>
+<!-- Hero Section -->
+<section class="svc-hero">
+  <div class="svc-hero-in">
+    <div>
+      <nav aria-label="パンくずリスト" style="font-size:.78rem;color:#6b7280;margin-bottom:16px;">
+        <a href="https://appadaycreator.com/" style="color:#10B981;text-decoration:none;">ホーム</a>
+        <span style="margin:0 .35rem;color:#9ca3af">›</span>
+        <span style="color:#374151">離乳食診断</span>
+      </nav>
+      <h1 class="svc-hero-title">月齢とアレルギーに合わせた<br><span style="color:#10B981;">離乳食診断</span></h1>
+      <p class="svc-hero-sub">6つの質問で赤ちゃんにぴったりの食材・レシピ・栄養アドバイスを無料提案。登録不要・ブラウザ完結。</p>
+      <div class="svc-hero-stats">
+        <div class="svc-hero-stat">
+          <div class="svc-hero-stat-num">5〜18</div>
+          <div class="svc-hero-stat-label">ヶ月対応</div>
+        </div>
+        <div class="svc-hero-stat">
+          <div class="svc-hero-stat-num">9種</div>
+          <div class="svc-hero-stat-label">アレルギー対応</div>
+        </div>
+        <div class="svc-hero-stat">
+          <div class="svc-hero-stat-num">無料</div>
+          <div class="svc-hero-stat-label">登録不要</div>
+        </div>
+        <div class="svc-hero-stat">
+          <div class="svc-hero-stat-num">82%</div>
+          <div class="svc-hero-stat-label">栄養バランス確認</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <img src="assets/photos/photo_02.jpg" alt="離乳食診断" class="svc-hero-photo">
+    </div>
+  </div>
+</section>
+<!-- Photo strip -->
+<div style="display:grid;grid-template-columns:repeat(5,1fr);gap:0;height:120px;overflow:hidden;">
+  <img src="assets/photos/photo_03.jpg" alt="" style="width:100%;height:100%;object-fit:cover;">
+  <img src="assets/photos/photo_04.jpg" alt="" style="width:100%;height:100%;object-fit:cover;">
+  <img src="assets/photos/photo_05.jpg" alt="" style="width:100%;height:100%;object-fit:cover;">
+  <img src="assets/photos/photo_06.jpg" alt="" style="width:100%;height:100%;object-fit:cover;">
+  <img src="assets/photos/photo_07.jpg" alt="" style="width:100%;height:100%;object-fit:cover;">
+</div>
 
-<div role="main" id="main" class="max-w-lg mx-auto px-4 py-8">
+
+<a href="#main" class="sr-only">本文へスキップ</a>
+
+<div role="main" id="main" class="max-w-2xl mx-auto px-4 py-8">
 
   <!-- 導入画面 -->
   <div id="screen-intro" class="screen active">
-    <div class="text-center mb-8">
-      <div class="text-6xl mb-4">🍼</div>
-      <h1 class="text-2xl font-bold text-gray-800 mb-2">離乳食・ベビーフードアドバイザー</h1>
-      <p class="text-gray-600 text-sm">6つの質問で、赤ちゃんの月齢に合った<br>最適な食材とレシピをご提案します</p>
+
+    <!-- 診断スタートカード -->
+    <div class="card p-6 mb-5" style="background:linear-gradient(135deg,#ECFDF5,#F0FDF4);border:2px solid #A7F3D0;">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+        <img src="assets/icons/split/03-05.png" alt="AI診断" style="width:40px;height:40px;background:#fff;border-radius:10px;padding:6px;">
+        <div>
+          <div style="font-size:13px;font-weight:700;color:#065F46;">離乳食診断をはじめる</div>
+          <div style="font-size:11px;color:#6B7280;">6つの質問に答えるだけ・約2分</div>
+        </div>
+      </div>
+      <!-- Step indicator -->
+      <div style="display:flex;gap:6px;margin-bottom:20px;justify-content:center;">
+        <div style="width:28px;height:6px;background:#10B981;border-radius:3px;"></div>
+        <div style="width:28px;height:6px;background:#D1FAE5;border-radius:3px;"></div>
+        <div style="width:28px;height:6px;background:#D1FAE5;border-radius:3px;"></div>
+        <div style="width:28px;height:6px;background:#D1FAE5;border-radius:3px;"></div>
+        <div style="width:28px;height:6px;background:#D1FAE5;border-radius:3px;"></div>
+        <div style="width:28px;height:6px;background:#D1FAE5;border-radius:3px;"></div>
+      </div>
+      <button class="btn-primary mb-3" onclick="startDiagnosis()" aria-label="今すぐ無料で月齢別離乳食診断を始める" style="font-size:1.1rem;min-height:56px;letter-spacing:0.02em;">
+        無料で診断する →
+      </button>
+      <p style="text-align:center;font-size:11px;color:#9CA3AF;">登録不要 · 完全無料 · 個人情報送信なし</p>
     </div>
-    <div class="card p-6 mb-6 space-y-4">
-      <div class="flex items-center gap-3">
-        <div class="text-2xl">📅</div>
-        <div><div class="font-bold text-gray-800 text-sm">月齢別に対応</div><div class="text-pink-600 text-sm">5ヶ月〜18ヶ月まで4段階で診断</div></div>
+
+    <!-- 特徴4カード -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;">
+      <div class="card p-4" style="display:flex;align-items:flex-start;gap:10px;">
+        <img src="assets/icons/split/01-04.png" alt="" style="width:32px;height:32px;flex-shrink:0;background:#ECFDF5;border-radius:8px;padding:4px;">
+        <div>
+          <div style="font-size:13px;font-weight:700;color:#1F2937;">月齢別提案</div>
+          <div style="font-size:11px;color:#6B7280;">5〜18ヶ月・4段階対応</div>
+        </div>
       </div>
-      <div class="flex items-center gap-3">
-        <div class="text-2xl">🥦</div>
-        <div><div class="font-bold text-gray-800 text-sm">おすすめ食材リスト</div><div class="text-gray-600 text-sm">使える食材・避ける食材を月齢別に提示</div></div>
+      <div class="card p-4" style="display:flex;align-items:flex-start;gap:10px;">
+        <img src="assets/icons/split/02-05.png" alt="" style="width:32px;height:32px;flex-shrink:0;background:#ECFDF5;border-radius:8px;padding:4px;">
+        <div>
+          <div style="font-size:13px;font-weight:700;color:#1F2937;">アレルギー対応</div>
+          <div style="font-size:11px;color:#6B7280;">9種類のアレルゲン対応</div>
+        </div>
       </div>
-      <div class="flex items-center gap-3">
-        <div class="text-2xl">⏱️</div>
-        <div><div class="font-bold text-gray-800 text-sm">時短アドバイス付き</div><div class="text-gray-600 text-sm">忙しいパパ・ママのために時短レシピも</div></div>
+      <div class="card p-4" style="display:flex;align-items:flex-start;gap:10px;">
+        <img src="assets/icons/split/02-08.png" alt="" style="width:32px;height:32px;flex-shrink:0;background:#ECFDF5;border-radius:8px;padding:4px;">
+        <div>
+          <div style="font-size:13px;font-weight:700;color:#1F2937;">栄養見える化</div>
+          <div style="font-size:11px;color:#6B7280;">グラフで達成度を確認</div>
+        </div>
       </div>
-      <div class="flex items-center gap-3">
-        <div class="text-2xl">🚚</div>
-        <div><div class="font-bold text-gray-800 text-sm">食材宅配サービスを紹介</div><div class="text-gray-600 text-sm">Oisix・コープなど育児に嬉しいサービスも</div></div>
+      <div class="card p-4" style="display:flex;align-items:flex-start;gap:10px;">
+        <img src="assets/icons/split/02-07.png" alt="" style="width:32px;height:32px;flex-shrink:0;background:#ECFDF5;border-radius:8px;padding:4px;">
+        <div>
+          <div style="font-size:13px;font-weight:700;color:#1F2937;">時短レシピ</div>
+          <div style="font-size:11px;color:#6B7280;">忙しい日の時短術も</div>
+        </div>
       </div>
     </div>
-    <button class="btn-primary" onclick="startDiagnosis()" aria-label="診断スタート →">診断スタート →</button>
+
+    <!-- 食材写真グリッド -->
+    <div class="svc-photo-grid mb-4">
+      <img src="assets/photos/photo_08.jpg" alt="食材">
+      <img src="assets/photos/photo_09.jpg" alt="食材">
+      <img src="assets/photos/photo_10.jpg" alt="食材">
+      <img src="assets/photos/photo_11.jpg" alt="食材">
+    </div>
+
+    <!-- おすすめ食材宅配 -->
+    <div class="card p-4 mb-4" style="background:#F0FDF4;border:1px solid #A7F3D0;">
+      <p style="font-size:12px;font-weight:700;color:#065F46;margin-bottom:10px;">おすすめの食材宅配サービスも提案</p>
+      <div style="display:flex;gap:8px;">
+        <div style="flex:1;text-align:center;background:#fff;border:1px solid #D1FAE5;border-radius:10px;padding:10px;font-size:13px;font-weight:800;color:#065F46;">Oisix</div>
+        <div style="flex:1;text-align:center;background:#fff;border:1px solid #FDE68A;border-radius:10px;padding:10px;font-size:13px;font-weight:800;color:#92400E;">ヨシケイ</div>
+        <div style="flex:1;text-align:center;background:#fff;border:1px solid #D1FAE5;border-radius:10px;padding:10px;font-size:13px;font-weight:800;color:#065F46;">コープ</div>
+      </div>
+    </div>
+
+    <!-- M3: 診断履歴セクション -->
+    <div class="card p-6 mb-6" id="diagnosis-history" style="display:none;background:#f0f9ff;border:1px solid #bae6fd;">
+    </div>
+
+    <!-- M6: 食材導入トラッキングセクション -->
+    <div class="card p-6 mb-6" id="tracking-section" style="display:none;background:#fef3c7;border:1px solid #fbbf24;">
+      <h3 class="font-bold text-gray-800 mb-4 text-sm">📊 食材導入の進捗</h3>
+      <div class="mb-4">
+        <div class="text-sm font-bold text-gray-700 mb-2">導入目標</div>
+        <div id="goal-display" class="text-xs text-gray-600 mb-3">目標を設定して食材導入を追跡しましょう</div>
+        <button onclick="showGoalModal()" style="width:100%;display:block;text-align:center;background:#f59e0b;color:white;padding:8px;border-radius:8px;font-size:12px;font-weight:bold;cursor:pointer;border:none;">⚙️ 目標を設定</button>
+      </div>
+      <div style="border-top:1px solid #fcd34d;padding-top:12px;">
+        <div class="text-sm font-bold text-gray-700 mb-2">導入済み食材（<span id="introduced-count">0</span>種類）</div>
+        <div id="introduced-foods" class="text-xs text-gray-600">食材を導入した日付で記録できます</div>
+        <button onclick="addIntroduced()" style="width:100%;display:block;text-align:center;background:#34d399;color:white;padding:6px;border-radius:8px;font-size:12px;font-weight:bold;cursor:pointer;border:none;margin-top:8px;">➕ 食材を追加</button>
+      </div>
+      <div style="background:white;border-radius:8px;padding:8px;margin-top:8px;display:none;" id="achievement-gauge">
+        <div class="text-xs font-bold text-gray-700 mb-2">達成率</div>
+        <div style="background:#f3f4f6;border-radius:999px;height:8px;overflow:hidden;">
+          <div id="achievement-bar" style="background:#10b981;height:100%;width:0%;transition:width 0.3s ease;"></div>
+        </div>
+        <div style="text-align:center;margin-top:4px;"><span id="achievement-pct" style="font-size:12px;font-weight:bold;color:#10b981;">0%</span></div>
+      </div>
+    </div>
+
+    <!-- V1: モバイルファーストビューCTAバナー -->
+    <div style="display:none;padding:12px 16px;background:linear-gradient(135deg, #10B981 0%, #059669 100%);text-align:center;margin-bottom:16px;border-radius:8px;box-shadow:0 4px 12px rgba(16,185,129,0.3);" id="mobile-cta">
+      <button class="btn-primary" onclick="startDiagnosis()" style="background:white;color:#10B981;margin:0;font-weight:700;" aria-label="診断スタート →">今すぐ無料で診断開始</button>
+    </div>
+
+    <button class="btn-primary" onclick="startDiagnosis()" aria-label="診断スタート →">離乳食診断をスタート →</button>
     <p class="text-center text-xs text-gray-500 mt-3">※医師・栄養士の指導の代替ではありません</p>
   </div>
 
   <!-- 質問画面 -->
   <div id="screen-questions" class="screen">
-    <div class="mb-6">
-      <div class="flex justify-between text-xs text-gray-500 mb-1">
-        <span id="q-label">質問 1 / 6</span>
-        <span id="q-pct">17%</span>
+    <div class="mb-5" style="background:#F0FDF4;border-radius:12px;padding:14px 16px;border:1px solid #A7F3D0;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+        <span style="font-size:13px;font-weight:700;color:#065F46;" id="q-label">質問 1 / 6</span>
+        <span style="font-size:13px;font-weight:700;color:#10B981;" id="q-pct">17%</span>
       </div>
       <div class="progress-track"><div class="progress-bar" id="prog" style="width:17%"></div></div>
     </div>
     <div class="card p-6">
-      <h2 class="text-lg font-bold text-gray-800 mb-5" id="q-text"></h2>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
+        <img src="assets/icons/split/03-05.png" alt="" style="width:32px;height:32px;background:#ECFDF5;border-radius:8px;padding:4px;">
+        <h2 class="text-lg font-bold text-gray-800" id="q-text"></h2>
+      </div>
       <div id="opts"></div>
     </div>
-    <p class="text-center text-xs text-gray-400 mt-4">🍼 離乳食・ベビーフードアドバイザー</p>
+    <p class="text-center text-xs text-gray-400 mt-4" style="display:flex;align-items:center;justify-content:center;gap:6px;">
+      <img src="assets/icons/split/01-02.png" alt="" style="width:16px;height:16px;">
+      Baby Food Advisor
+    </p>
   </div>
 
   <!-- ローディング画面 -->
@@ -206,16 +440,6 @@ ins.adsbygoogle[data-ad-status="unfilled"]{display:none!important;margin:0!impor
   </div>
 
   <!-- 結果画面 -->
-  
-    <div class="card p-6 mb-4">
-      <h2 class="font-bold text-gray-800 mb-3">💡 使用例</h2>
-      <ul class="text-sm text-gray-700 space-y-2">
-        <li>• 複数の選択肢から最適なものを選びたい場合</li>
-        <li>• 意思決定に客観的な基準が欲しい場合</li>
-        <li>• プロフェッショナルなアドバイスが必要な場合</li>
-        <li>• 予算やニーズに合わせた提案を受けたい場合</li>
-      </ul>
-    </div>
 <div id="screen-results" class="screen">
     <!-- P19: シェアURLで開かれた場合の結果バナー -->
     <div id="shared-result-banner" style="display:none;background:#fdf2f8;border:2px solid #ec4899;border-radius:12px;padding:12px 16px;margin-bottom:12px;text-align:center;">
@@ -223,24 +447,80 @@ ins.adsbygoogle[data-ad-status="unfilled"]{display:none!important;margin:0!impor
       <p id="shared-result-text" style="font-size:14px;color:#9d174d;margin-top:4px;"></p>
       <button onclick="show('intro')" style="margin-top:8px;background:#ec4899;color:#fff;border:none;border-radius:8px;padding:8px 16px;font-weight:700;cursor:pointer;" aria-label="自分も診断してみる →">自分も診断してみる →</button>
     </div>
-    <div class="text-center mb-6">
-      <div class="text-5xl mb-3">🎉</div>
-      <h2 class="text-xl font-bold text-gray-800">診断結果</h2>
+    <!-- 結果ヘッダーバナー -->
+    <div style="background:linear-gradient(135deg,#10B981,#059669);border-radius:16px;padding:20px;margin-bottom:16px;display:flex;align-items:center;gap:16px;">
+      <img src="assets/icons/split/03-06.png" alt="" style="width:44px;height:44px;flex-shrink:0;">
+      <div>
+        <div style="font-size:13px;color:rgba(255,255,255,0.8);font-weight:600;">診断完了！</div>
+        <h2 style="font-size:20px;font-weight:800;color:#fff;">あなたへの診断結果</h2>
+      </div>
+    </div>
+
+    <!-- 食材写真プレビュー -->
+    <div class="res-photo-strip mb-4">
+      <img src="assets/photos/photo_12.jpg" alt="おすすめ食材">
+      <img src="assets/photos/photo_13.jpg" alt="おすすめ食材">
+      <img src="assets/photos/photo_14.jpg" alt="おすすめ食材">
+    </div>
+
+    <!-- M4: グラフセクション -->
+    <div class="card p-6 mb-4">
+      <h3 class="font-bold text-gray-800 mb-3" style="display:flex;align-items:center;gap:8px;">
+        <img src="assets/icons/split/02-08.png" alt="" style="width:24px;height:24px;"> 栄養バランス達成度</h3>
+      <div style="position:relative;height:200px;margin-bottom:12px;">
+        <canvas id="progress-chart"></canvas>
+      </div>
+      <div class="text-center">
+        <div class="text-2xl font-bold text-pink-600" id="progress-score">0%</div>
+        <p class="text-xs text-gray-500">ステージ進捗度</p>
+      </div>
     </div>
 
     <!-- 月齢ステージ -->
-    <div class="card p-6 mb-4">
+    <div class="card p-6 mb-4" id="res-stage-card">
       <div class="text-center mb-4">
         <div class="text-3xl mb-2" id="res-emoji">🌱</div>
-        <div class="text-xl font-bold text-pink-600" id="res-stage"></div>
+        <h2 class="font-bold text-pink-600" id="res-stage"></h2>
         <div class="text-sm text-gray-500 mt-1" id="res-stage-sub"></div>
       </div>
       <p class="text-sm text-gray-600" id="res-desc"></p>
     </div>
 
+    <!-- シェアセクション -->
+    <div class="card p-6 mb-4" style="background:#f0f9ff;border:1px solid #bae6fd;">
+      <h3 class="font-bold text-blue-800 mb-3 text-sm">📤 この診断結果をシェア</h3>
+      <div class="space-y-2">
+        <button onclick="copyShareUrl()" style="width:100%;display:block;text-align:center;background:#0284c7;color:white;padding:10px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;border:none;transition:all 0.2s;margin-bottom:8px;">📋 診断結果URLをコピー</button>
+        <div class="flex gap-2">
+          <a id="share-line" href="#" target="_blank" rel="noopener" style="flex:1;display:block;text-align:center;background:#06C755;color:white;padding:8px;border-radius:8px;font-size:12px;font-weight:bold;text-decoration:none;">LINEでシェア</a>
+          <a id="share-twitter" href="#" target="_blank" rel="noopener" style="flex:1;display:block;text-align:center;background:#000;color:white;padding:8px;border-radius:8px;font-size:12px;font-weight:bold;text-decoration:none;">Xでシェア</a>
+          <a id="share-pinterest" href="#" target="_blank" rel="noopener" style="flex:1;display:block;text-align:center;background:#E60023;color:white;padding:8px;border-radius:8px;font-size:12px;font-weight:bold;text-decoration:none;">保存</a>
+        </div>
+      </div>
+      <div id="copy-toast" style="display:none;text-align:center;margin-top:8px;font-size:12px;color:#0284c7;font-weight:bold;">✅ URLをコピーしました</div>
+    </div>
+
+    <!-- 食材導入トラッキング結果画面版 -->
+    <div class="card p-6 mb-4" id="result-tracking" style="background:#f0fdf4;border:1px solid #86efac;">
+      <h3 class="font-bold text-gray-800 mb-3">🎯 月齢別食材導入チェックリスト</h3>
+      <div id="result-introduced-list" class="text-sm text-gray-600 mb-3">
+        <p class="text-xs text-gray-500">今月齢で導入予定の食材をチェック</p>
+      </div>
+      <button onclick="addIntroducedFromResult()" style="width:100%;display:block;text-align:center;background:#10b981;color:white;padding:8px;border-radius:8px;font-size:12px;font-weight:bold;cursor:pointer;border:none;">✅ 導入した食材を記録</button>
+    </div>
+
+    <!-- 食材写真グリッド2 -->
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:16px;">
+      <img src="assets/photos/photo_15.jpg" alt="" style="width:100%;height:72px;object-fit:cover;border-radius:8px;">
+      <img src="assets/photos/photo_16.jpg" alt="" style="width:100%;height:72px;object-fit:cover;border-radius:8px;">
+      <img src="assets/photos/photo_17.jpg" alt="" style="width:100%;height:72px;object-fit:cover;border-radius:8px;">
+      <img src="assets/photos/photo_18.jpg" alt="" style="width:100%;height:72px;object-fit:cover;border-radius:8px;">
+    </div>
+
     <!-- 食材リスト -->
     <div class="card p-6 mb-4">
-      <h3 class="font-bold text-gray-800 mb-3">🥕 おすすめ食材リスト</h3>
+      <h3 class="font-bold text-gray-800 mb-3" style="display:flex;align-items:center;gap:8px;">
+        <img src="assets/icons/split/01-06.png" alt="" style="width:24px;height:24px;"> おすすめ食材リスト</h3>
       <div class="mb-3">
         <div class="text-sm font-bold text-green-700 mb-2">✅ 使える食材</div>
         <div id="ok-foods"></div>
@@ -253,25 +533,35 @@ ins.adsbygoogle[data-ad-status="unfilled"]{display:none!important;margin:0!impor
 
     <!-- 簡単レシピ3つ -->
     <div class="card p-6 mb-4">
-      <h3 class="font-bold text-gray-800 mb-3">🍳 簡単レシピのヒント</h3>
+      <h3 class="font-bold text-gray-800 mb-3" style="display:flex;align-items:center;gap:8px;">
+        <img src="assets/icons/split/03-04.png" alt="" style="width:24px;height:24px;"> 簡単レシピのヒント</h3>
       <div id="recipes" class="space-y-3"></div>
+      <!-- Recipe photo strip -->
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:14px;">
+        <img src="assets/photos/photo_19.jpg" alt="" style="width:100%;height:64px;object-fit:cover;border-radius:8px;">
+        <img src="assets/photos/photo_20.jpg" alt="" style="width:100%;height:64px;object-fit:cover;border-radius:8px;">
+        <img src="assets/photos/photo_21.jpg" alt="" style="width:100%;height:64px;object-fit:cover;border-radius:8px;">
+      </div>
     </div>
 
     <!-- 時短アドバイス -->
     <div class="card p-6 mb-4">
-      <h3 class="font-bold text-gray-800 mb-3">⏱️ 時短アドバイス</h3>
+      <h3 class="font-bold text-gray-800 mb-3" style="display:flex;align-items:center;gap:8px;">
+        <img src="assets/icons/split/02-07.png" alt="" style="width:24px;height:24px;"> 時短アドバイス</h3>
       <div id="timesaving" class="text-sm text-gray-700 space-y-2"></div>
+      <img src="assets/photos/photo_22.jpg" alt="" style="width:100%;height:100px;object-fit:cover;border-radius:10px;margin-top:12px;">
     </div>
 
     <!-- AdSense広告 -->
     <div class="mb-4 text-center">
       <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8427583028015858" data-ad-slot="auto" data-ad-format="auto" data-full-width-responsive="true"></ins>
-      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      <script>try{(adsbygoogle = window.adsbygoogle || []).push({});}catch(e){}</script>
     </div>
 
     <!-- アフィリエイト -->
-    <div class="card p-6 mb-4">
-      <h3 class="font-bold text-gray-800 mb-3">🚚 おすすめ食材宅配サービス</h3>
+    <div class="card p-6 mb-4" style="border:1px solid #A7F3D0;">
+      <h3 class="font-bold text-gray-800 mb-3" style="display:flex;align-items:center;gap:8px;">
+        <img src="assets/icons/split/04-06.png" alt="" style="width:24px;height:24px;"> おすすめ食材宅配サービス</h3>
       <p class="text-xs text-gray-500 mb-3">離乳食用の有機野菜・無添加食材を自宅にお届け</p>
       <a href="https://px.a8.net/svt/ejp?a8mat=4B3VR6+G0X7D6+1QM6+I5AIP" target="_blank" rel="noopener" class="aff-btn" style="background:#ff6b35;color:white;">
         🥕 Oisix（オイシックス）で食材を注文 →<br><span style="font-size:0.8rem;font-weight:400;">有機野菜・無添加・離乳食にぴったり</span>
@@ -339,7 +629,8 @@ var Qs = [
   },
   {
     text: "Q3: アレルギー・食べられない食材は？",
-    opts: ["なし","卵","乳製品","小麦","そば・蕎麦粉","エビ・かに","ピーナッツ・ナッツ","複数あり","不明・様子見"],
+    opts: ["なし","卵","乳製品","小麦"],
+    optsExt: ["そば・蕎麦粉","エビ・かに","ピーナッツ・ナッツ","複数あり","不明・様子見"],
     key: "allergy"
   },
   {
@@ -456,6 +747,231 @@ var troubleAdvice = {
 
 var cur = 0, ans = {};
 
+// M3: localStorage 関数
+function saveAnswers() {
+  var history = JSON.parse(localStorage.getItem('baby-food-history') || '[]');
+  var entry = {
+    date: new Date().toLocaleString('ja-JP'),
+    age: ans.age ? ans.age.val : '',
+    progress: ans.progress ? ans.progress.val : '',
+    allergy: ans.allergy ? ans.allergy.val : '',
+    effort: ans.effort ? ans.effort.val : '',
+    trouble: ans.trouble ? ans.trouble.val : '',
+    purchase: ans.purchase ? ans.purchase.val : ''
+  };
+  history.unshift(entry);
+  if (history.length > 5) history.pop();
+  localStorage.setItem('baby-food-history', JSON.stringify(history));
+}
+
+function loadLastAnswers() {
+  var history = JSON.parse(localStorage.getItem('baby-food-history') || '[]');
+  if (!history.length) return null;
+  return history[0];
+}
+
+function displayHistory() {
+  var history = JSON.parse(localStorage.getItem('baby-food-history') || '[]');
+  var historyDiv = document.getElementById('diagnosis-history');
+  if (!historyDiv) return;
+
+  if (!history.length) {
+    historyDiv.style.display = 'none';
+    return;
+  }
+
+  historyDiv.style.display = 'block';
+  var html = '<h3 style="font-bold text-gray-800 mb-3 text-sm">📋 診断履歴（最近5回）</h3><div class="space-y-2">';
+  for (var i = 0; i < Math.min(5, history.length); i++) {
+    var h = history[i];
+    var badge = i === 0 ? '<span style="font-size:10px;background:#db2777;color:white;padding:2px 6px;border-radius:4px;margin-left:8px;">最新</span>' : '';
+    var stageEmoji = '';
+    if (h.age) {
+      if (h.age.includes('5〜6')) stageEmoji = '🌱';
+      else if (h.age.includes('7〜8')) stageEmoji = '🌿';
+      else if (h.age.includes('9〜11')) stageEmoji = '🌻';
+      else if (h.age.includes('12〜18')) stageEmoji = '🌸';
+    }
+    html += '<div class="bg-gray-50 rounded-lg p-3 text-sm cursor-pointer hover:bg-blue-50 transition" onclick="loadFromHistory(' + i + ')" style="border-left:4px solid #db2777;"><div class="font-bold text-gray-800">' + stageEmoji + ' ' + h.date + badge + '</div><div class="text-gray-600 text-xs mt-1">📅 月齢: ' + h.age + ' | 🥕 アレルギー: ' + (h.allergy || 'なし') + ' | 💨 進捗: ' + (h.progress || '未記録') + '</div></div>';
+  }
+  html += '</div>';
+  historyDiv.innerHTML = html;
+}
+
+function loadFromHistory(index) {
+  var history = JSON.parse(localStorage.getItem('baby-food-history') || '[]');
+  if (!history[index]) return;
+
+  var entry = history[index];
+  ans = {};
+
+  // 過去のデータから回答を復元
+  var ageMap = {'5〜6ヶ月（離乳食初期）': 0, '7〜8ヶ月（中期）': 1, '9〜11ヶ月（後期）': 2, '12〜18ヶ月（完了期）': 3};
+  var progressMap = {'まだ始めていない': 0, 'ゆっくり進んでいる': 1, '順調': 2, 'よく食べる': 3};
+  var effortMap = {'毎日手作りしたい': 0, 'なるべく手作りしたい': 1, '市販品も積極的に活用したい': 2, 'できるだけ楽したい': 3};
+  var purchaseMap = {'スーパーで毎日買う': 0, 'まとめ買い（週1〜2回）': 1, '宅配サービスを使用': 2, 'コープ（生協）を利用中': 3};
+
+  if (entry.age) {
+    var ageIdx = ageMap[entry.age] || 0;
+    ans.age = { i: ageIdx, val: entry.age };
+  }
+  if (entry.progress) {
+    var progressIdx = progressMap[entry.progress] || 0;
+    ans.progress = { i: progressIdx, val: entry.progress };
+  }
+  if (entry.allergy) {
+    var allergyOpts = ['なし','卵','乳製品','小麦','そば・蕎麦粉','エビ・かに','ピーナッツ・ナッツ','複数あり','不明・様子見'];
+    var allergyIdx = allergyOpts.indexOf(entry.allergy);
+    if (allergyIdx >= 0) ans.allergy = { i: allergyIdx, val: entry.allergy };
+  }
+  if (entry.effort) {
+    var effortIdx = effortMap[entry.effort] || 0;
+    ans.effort = { i: effortIdx, val: entry.effort };
+  }
+  if (entry.purchase) {
+    var purchaseIdx = purchaseMap[entry.purchase] || 0;
+    ans.purchase = { i: purchaseIdx, val: entry.purchase };
+  }
+  if (entry.trouble) {
+    var troubleOpts = ['何から始めるかわからない','食べてくれない','栄養バランスが心配','時間がない','レパートリーが少ない'];
+    var troubleIdx = troubleOpts.indexOf(entry.trouble);
+    if (troubleIdx >= 0) ans.trouble = { i: troubleIdx, val: entry.trouble };
+  }
+
+  cur = 0;
+  showResults();
+}
+
+// M6: 目標設定・達成度トラッキング関数
+function saveGoals(goalFoods) {
+  localStorage.setItem('baby-food-goals', JSON.stringify(goalFoods));
+  updateTrackingDisplay();
+}
+
+function getGoals() {
+  return JSON.parse(localStorage.getItem('baby-food-goals') || '[]');
+}
+
+function saveIntroduced(introducedMap) {
+  localStorage.setItem('baby-food-introduced', JSON.stringify(introducedMap));
+  updateTrackingDisplay();
+}
+
+function getIntroduced() {
+  return JSON.parse(localStorage.getItem('baby-food-introduced') || '{}');
+}
+
+function updateTrackingDisplay() {
+  var goals = getGoals();
+  var introduced = getIntroduced();
+  var goalDiv = document.getElementById('goal-display');
+  var introDiv = document.getElementById('introduced-foods');
+  var trackingSection = document.getElementById('tracking-section');
+  var achievementGauge = document.getElementById('achievement-gauge');
+
+  if (!goals.length && !Object.keys(introduced).length) {
+    trackingSection.style.display = 'none';
+    return;
+  }
+
+  trackingSection.style.display = 'block';
+
+  // 目標表示
+  if (goals.length) {
+    goalDiv.innerHTML = '<div class="space-y-1">' + goals.map(function(g, i) {
+      return '<div class="text-xs text-gray-700 mb-1">🎯 ' + g + ' <button onclick="removeGoal(' + i + ')" style="color:#ef4444;font-size:11px;cursor:pointer;border:none;background:none;margin-left:4px;">削除</button></div>';
+    }).join('') + '</div>';
+  }
+
+  // 導入済み食材表示
+  if (Object.keys(introduced).length) {
+    introDiv.innerHTML = '<div class="space-y-1">' + Object.keys(introduced).map(function(food) {
+      var date = introduced[food];
+      return '<div class="text-xs text-gray-700 mb-1">✅ ' + food + ' (' + date + ') <button onclick="removeIntroduced(\'' + food.replace(/'/g, "\\'") + '\')" style="color:#ef4444;font-size:11px;cursor:pointer;border:none;background:none;margin-left:4px;">削除</button></div>';
+    }).join('') + '</div>';
+    document.getElementById('introduced-count').textContent = Object.keys(introduced).length;
+  }
+
+  // 達成率計算
+  if (goals.length > 0) {
+    var achievedCount = goals.filter(function(g) { return introduced.hasOwnProperty(g); }).length;
+    var pct = Math.round((achievedCount / goals.length) * 100);
+    achievementGauge.style.display = 'block';
+    document.getElementById('achievement-bar').style.width = pct + '%';
+    document.getElementById('achievement-pct').textContent = pct + '%';
+  }
+}
+
+function showGoalModal() {
+  var goals = getGoals();
+  var input = prompt('導入目標の食材を入力してください（カンマ区切りで複数可。例：卵,乳製品,小麦）:', goals.join(','));
+  if (input === null) return;
+
+  var newGoals = input.split(',').map(function(s) { return s.trim(); }).filter(function(s) { return s.length > 0; });
+  saveGoals(newGoals);
+}
+
+function removeGoal(index) {
+  var goals = getGoals();
+  goals.splice(index, 1);
+  saveGoals(goals);
+}
+
+function addIntroduced() {
+  var food = prompt('導入した食材を入力してください:');
+  if (!food) return;
+  var introduced = getIntroduced();
+  var today = new Date().toLocaleDateString('ja-JP');
+  introduced[food] = today;
+  saveIntroduced(introduced);
+}
+
+function removeIntroduced(food) {
+  var introduced = getIntroduced();
+  delete introduced[food];
+  saveIntroduced(introduced);
+}
+
+function addIntroducedFromResult() {
+  var ageIdx = ans.age ? ans.age.i : 0;
+  var stageKey = ['early','middle','late','finish'][ageIdx] || 'early';
+  var data = stageData[stageKey];
+
+  var foodList = data.okFoods.join('\n');
+  var food = prompt('導入した食材を入力してください（おすすめ食材から選択可）:\n\n---\n' + foodList, '');
+  if (!food) return;
+
+  var introduced = getIntroduced();
+  var today = new Date().toLocaleDateString('ja-JP');
+  introduced[food] = today;
+  saveIntroduced(introduced);
+
+  alert('✅ 「' + food + '」を導入済みとして記録しました！');
+  updateResultTrackingDisplay();
+  updateTrackingDisplay();
+}
+
+function updateResultTrackingDisplay() {
+  var ageIdx = ans.age ? ans.age.i : 0;
+  var stageKey = ['early','middle','late','finish'][ageIdx] || 'early';
+  var data = stageData[stageKey];
+  var introduced = getIntroduced();
+
+  var resultList = document.getElementById('result-introduced-list');
+  var checkedCount = data.okFoods.filter(function(f) { return introduced.hasOwnProperty(f); }).length;
+  var checkHtml = '<div class="space-y-1">';
+
+  data.okFoods.forEach(function(food) {
+    var isIntroduced = introduced.hasOwnProperty(food);
+    var icon = isIntroduced ? '☑️' : '☐';
+    var style = isIntroduced ? 'opacity:0.6;text-decoration:line-through;' : '';
+    checkHtml += '<div style="' + style + '" class="text-xs text-gray-700 mb-1">' + icon + ' ' + food + (isIntroduced ? ' (' + introduced[food] + ')' : '') + '</div>';
+  });
+
+  checkHtml += '</div>';
+  resultList.innerHTML = checkHtml;
+}
+
 function startDiagnosis() {
   gtag('event', 'quiz_start', { event_category: 'engagement' });
   show('questions');
@@ -476,6 +992,8 @@ function renderQ() {
   document.getElementById('prog').style.width = pct + '%';
   document.getElementById('q-text').textContent = q.text;
   var c = document.getElementById('opts'); c.innerHTML = '';
+  var displayOpts = q.opts;
+  var hasExt = q.optsExt && q.optsExt.length > 0;
   q.opts.forEach(function(opt, i) {
     var b = document.createElement('button');
     b.className = 'option-btn';
@@ -483,6 +1001,31 @@ function renderQ() {
     b.onclick = function() { pick(i, opt, q.key); };
     c.appendChild(b);
   });
+  if (hasExt) {
+    var expandBtn = document.createElement('button');
+    expandBtn.className = 'option-btn';
+    expandBtn.textContent = '▼ その他を表示（' + q.optsExt.length + '個）';
+    expandBtn.style.background = '#f0f9ff';
+    expandBtn.style.borderColor = '#0284c7';
+    expandBtn.style.color = '#0284c7';
+    expandBtn.style.fontWeight = '600';
+    expandBtn.onclick = function() {
+      document.getElementById('opts-ext').style.display = 'block';
+      expandBtn.style.display = 'none';
+    };
+    c.appendChild(expandBtn);
+    var extDiv = document.createElement('div');
+    extDiv.id = 'opts-ext';
+    extDiv.style.display = 'none';
+    q.optsExt.forEach(function(opt, i) {
+      var b = document.createElement('button');
+      b.className = 'option-btn';
+      b.textContent = opt;
+      b.onclick = function() { pick(q.opts.length + i, opt, q.key); };
+      extDiv.appendChild(b);
+    });
+    c.appendChild(extDiv);
+  }
 }
 
 function pick(i, val, key) {
@@ -504,14 +1047,25 @@ function launchConfetti(){var colors=['#db2777','#fbbf24','#34d399','#60a5fa','#
 
 function showResults() {
   try { launchConfetti(); } catch(e) {}
+  saveAnswers();
   var ageIdx = ans.age ? ans.age.i : 0;
   var stageKey = ['early','middle','late','finish'][ageIdx] || 'early';
   var data = stageData[stageKey];
+
+  // M4: 進捗度スコア計算（月齢が進むほどスコア上昇）
+  var progressScore = Math.round(((ageIdx + 1) / 4) * 100);
+  document.getElementById('progress-score').textContent = progressScore + '%';
+
+  // M6: 結果画面の食材導入チェックリストを更新
+  updateResultTrackingDisplay();
 
   document.getElementById('res-emoji').textContent = data.emoji;
   document.getElementById('res-stage').textContent = data.stage;
   document.getElementById('res-stage-sub').textContent = data.stageSub;
   document.getElementById('res-desc').textContent = data.desc;
+
+  var stageCard = document.getElementById('res-stage-card');
+  stageCard.className = 'card p-6 mb-4 stage-' + stageKey;
 
   // 食材リスト
   var okEl = document.getElementById('ok-foods');
@@ -551,47 +1105,135 @@ function showResults() {
     tsEl.appendChild(p);
   });
 
-  // アレルギーアドバイスを注入
+  // Q5「困っていること」アドバイスを時短アドバイスの後に注入
+  var oldTroubleDiv = document.getElementById('trouble-advice');
+  if (oldTroubleDiv) oldTroubleDiv.remove();
+  var troubleIdx = ans.trouble ? ans.trouble.i : null;
+  if (troubleIdx !== null && troubleAdvice[troubleIdx]) {
+    var troubleDiv = document.createElement('div');
+    troubleDiv.id = 'trouble-advice';
+    troubleDiv.className = 'card p-6 mb-4';
+    troubleDiv.innerHTML = '<h3 class="font-bold text-gray-800 mb-3">🙋 あなたのお悩みへのアドバイス</h3><div class="bg-yellow-50 border border-yellow-200 rounded-lg p-3 text-sm text-gray-700">' + troubleAdvice[troubleIdx] + '</div>';
+    document.getElementById('timesaving').closest('.card').after(troubleDiv);
+  }
+
+  // アレルギーアドバイスを注入（月齢ステージの直後）
+  var oldAllergyDiv = document.getElementById('allergy-advice');
+  if (oldAllergyDiv) oldAllergyDiv.remove();
   var allergyIdx = ans.allergy ? ans.allergy.i : 0;
   if (allergyIdx > 0 && allergyAdvice[allergyIdx]) {
     var allergyDiv = document.createElement('div');
-    allergyDiv.className = 'bg-red-50 border border-red-200 rounded-lg p-3 mt-2';
+    allergyDiv.id = 'allergy-advice';
+    allergyDiv.className = 'bg-red-50 border border-red-200 rounded-lg p-3 mb-4 card';
     allergyDiv.innerHTML = '<div class="font-bold text-red-700 text-sm mb-1">⚠️ アレルギーに注意</div><div class="text-sm text-red-600">' + allergyAdvice[allergyIdx] + '</div>';
-    document.getElementById('recipes').before(allergyDiv);
+    document.getElementById('res-stage-card').after(allergyDiv);
   }
 
   show('results');
+  updateTrackingDisplay();
+  drawProgressChart(progressScore, stageKey);
   gtag('event', 'result_view', { event_category: 'conversion', stage: stageKey });
   // P19: 結果URLを更新してシェアリンクに反映
   try {
     var stageLabel = data.stage || stageKey;
     var encoded = btoa(unescape(encodeURIComponent(stageLabel)));
-    var shareUrl = location.origin + location.pathname + '?r=' + encoded;
+    window.currentShareUrl = location.origin + location.pathname + '?r=' + encoded;
 
     // LINE シェア最適化
-    var lineA = document.querySelector('a[href*="line.me"]');
+    var lineA = document.getElementById('share-line');
     if (lineA) {
-      var lineText = '我が家の赤ちゃん、' + stageLabel + 'に突入🍼\n離乳食診断で月齢別の食材をチェック！\n' + shareUrl;
+      var lineText = '我が家の赤ちゃん、' + stageLabel + 'に突入🍼\n離乳食診断で月齢別の食材をチェック！\n' + window.currentShareUrl;
       lineA.href = 'https://line.me/R/share?text=' + encodeURIComponent(lineText);
     }
 
     // Twitter（X）シェア最適化
-    var xA = document.querySelector('a[href*="twitter.com"]');
+    var xA = document.getElementById('share-twitter');
     if (xA) {
       var xText = data.stage.includes('初期') ? '離乳食初期スタート🌱' :
                   data.stage.includes('中期') ? '離乳食中期に進みました🌿' :
                   data.stage.includes('後期') ? '離乳食後期でカミカミ期へ🌻' :
                   '離乳食完了期です🌸';
-      xA.href = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(xText + '\n\n月齢別の食材・レシピを無料で提案🥕\n#離乳食 #育児 #赤ちゃん') + '&url=' + encodeURIComponent(shareUrl);
+      xA.href = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(xText + '\n\n月齢別の食材・レシピを無料で提案🥕\n#離乳食 #育児 #赤ちゃん') + '&url=' + encodeURIComponent(window.currentShareUrl);
+    }
+
+    // Pinterest シェア
+    var pA = document.getElementById('share-pinterest');
+    if (pA) {
+      pA.href = 'https://pinterest.com/pin/create/button/?url=' + encodeURIComponent(window.currentShareUrl) + '&description=' + encodeURIComponent('赤ちゃんの月齢に合った離乳食食材とレシピを無料で提案。');
     }
   } catch(e){}
+}
+
+function drawProgressChart(score, stageKey) {
+  var stageColors = { early: '#22c55e', middle: '#16a34a', late: '#eab308', finish: '#db2777' };
+  var stageLabels = { early: '初期', middle: '中期', late: '後期', finish: '完了期' };
+
+  var ctx = document.getElementById('progress-chart');
+  if (!ctx) return;
+
+  // 既存のチャートを破棄
+  if (window.progressChartInstance) window.progressChartInstance.destroy();
+
+  // ゲージチャート（ドーナツグラフ）
+  window.progressChartInstance = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels: ['現在のステージ進捗', '残り'],
+      datasets: [{
+        data: [score, 100 - score],
+        backgroundColor: [stageColors[stageKey], '#e5e7eb'],
+        borderColor: ['white', 'white'],
+        borderWidth: 2
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: { enabled: true }
+      }
+    }
+  });
 }
 
 function restart() {
   cur = 0;
   ans = {};
+  displayHistory();
+  updateTrackingDisplay();
   show('intro');
 }
+
+function copyShareUrl() {
+  if (window.currentShareUrl) {
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(window.currentShareUrl).then(function() {
+        var toast = document.getElementById('copy-toast');
+        if (toast) {
+          toast.style.display = 'block';
+          setTimeout(function() { toast.style.display = 'none'; }, 2000);
+        }
+      });
+    } else {
+      var area = document.createElement('textarea');
+      area.value = window.currentShareUrl;
+      document.body.appendChild(area);
+      area.select();
+      document.execCommand('copy');
+      document.body.removeChild(area);
+      var toast = document.getElementById('copy-toast');
+      if (toast) {
+        toast.style.display = 'block';
+        setTimeout(function() { toast.style.display = 'none'; }, 2000);
+      }
+    }
+  }
+}
+
+// M3: ページ初期化時に履歴を表示
+displayHistory();
+
 // P19: URLパラメータから診断結果を復元
 (function(){
   try {
@@ -606,66 +1248,71 @@ function restart() {
 </script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"離乳食診断【無料】月齢別おすすめ食材・レシピを提案","description":"赤ちゃんの月齢・アレルギー・好みから離乳食の食材とレシピを無料提案。5〜18ヶ月対応。","url":"https://appadaycreator.com/baby-food-advisor/","applicationCategory":"UtilityApplication","operatingSystem":"Any","inLanguage":"ja","offers":{"@type":"Offer","price":"0","priceCurrency":"JPY"}}</script>
 
-
 <div id="injected-wrapper" style="max-width:512px;margin:0 auto;padding:0 16px;">
         <!-- 使い方セクション（B2: 使い方3ステップ）-->
         <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:16px;margin:12px 0;">
             <h2 style="font-size:15px;font-weight:700;margin-bottom:10px;color:#374151;">📖 使い方</h2>
             <ol style="padding-left:20px;font-size:13px;color:#475569;line-height:1.9;">
-                <li><strong>入力</strong>：画面の入力フォームに必要な情報を入力してください</li>
-                <li><strong>計算・診断</strong>：ボタンをクリックすると即座に結果が表示されます</li>
-                <li><strong>活用</strong>：結果を参考に、次のアクションを検討してください</li>
+                <li><strong>月齢を選択</strong>：赤ちゃんの月齢（5〜18ヶ月）を選んでください</li>
+                <li><strong>状況を入力</strong>：離乳食の進み具合・アレルギー・困りごとを回答</li>
+                <li><strong>結果を確認</strong>：月齢に合った食材リスト・レシピ・アドバイスを受け取る</li>
             </ol>
         </div>
-        <div style="background:#fafafa;border:1px solid #e2e8f0;border-radius:10px;padding:12px;margin:10px 0;"><h2 style="font-size:13px;font-weight:700;margin-bottom:6px;color:#374151;">🔍 計算・判定の仕組み</h2><p style="font-size:12px;color:#6b7280;line-height:1.7;">入力された値を計算式やスコアリングロジックで処理し、あなたに合った結果を算出します。本ツールの結果はあくまで参考情報です。重要な判断の際は専門家にご相談ください。</p></div>
-<section style="background:#f8fafc;border-top:1px solid #e2e8f0;padding:24px 16px;margin-top:16px;">
+        <div style="background:#fafafa;border:1px solid #e2e8f0;border-radius:10px;padding:12px;margin:10px auto;max-width:680px;"><h2 style="font-size:13px;font-weight:700;margin-bottom:6px;color:#374151;">🔍 診断の仕組み</h2><p style="font-size:12px;color:#6b7280;line-height:1.7;">月齢・アレルギー・食べ具合・調達方法などをもとに、4つのステージ（初期〜完了期）から最適な食材・レシピを提案します。アレルギーがある場合は安全アドバイスも表示。医師・栄養士の代替ではなく、あくまで参考情報としてご活用ください。</p></div>
+<section style="background:#f8fafc;border-top:1px solid #e2e8f0;padding:24px 16px;margin-top:16px;max-width:720px;margin-left:auto;margin-right:auto;">
   <h2 style="font-size:16px;font-weight:700;color:#1e293b;margin:0 0 16px;text-align:center;">❓ よくある質問（FAQ）</h2>
   <div style="max-width:680px;margin:0 auto;">
     <details style="border:1px solid #e2e8f0;border-radius:8px;margin-bottom:8px;overflow:hidden;">
-      <summary style="padding:12px 16px;cursor:pointer;font-size:14px;font-weight:600;color:#334155;background:#fff;list-style:none;display:flex;justify-content:space-between;align-items:center;">Q. このチェック結果は医療診断の代わりになりますか？ <span>▼</span></summary>
-      <p style="padding:12px 16px;font-size:13px;color:#475569;margin:0;background:#f8fafc;">なりません。本ツールはあくまで参考情報の提供を目的としています。症状が続く場合は必ず医療機関を受診してください。</p>
+      <summary style="padding:12px 16px;cursor:pointer;font-size:14px;font-weight:600;color:#334155;background:#fff;list-style:none;display:flex;justify-content:space-between;align-items:center;">Q. おすすめ食材は月齢ごとにどう判断していますか？ <span>▼</span></summary>
+      <p style="padding:12px 16px;font-size:13px;color:#475569;margin:0;background:#f8fafc;">ゴックン期(5〜6ヶ月)・モグモグ期(7〜8ヶ月)・カミカミ期(9〜11ヶ月)・パクパク期(12ヶ月〜)の一般的な離乳食区分に沿って、月齢で進められる固さや食材を提案します。離乳開始や進め方は必ずかかりつけ医にご相談ください。</p>
     </details>
     <details style="border:1px solid #e2e8f0;border-radius:8px;margin-bottom:8px;overflow:hidden;">
-      <summary style="padding:12px 16px;cursor:pointer;font-size:14px;font-weight:600;color:#334155;background:#fff;list-style:none;display:flex;justify-content:space-between;align-items:center;">Q. プライバシーは守られますか？ <span>▼</span></summary>
-      <p style="padding:12px 16px;font-size:13px;color:#475569;margin:0;background:#f8fafc;">入力された健康情報はサーバーに送信・保存されません。すべてお使いのブラウザ上で処理されます。</p>
+      <summary style="padding:12px 16px;cursor:pointer;font-size:14px;font-weight:600;color:#334155;background:#fff;list-style:none;display:flex;justify-content:space-between;align-items:center;">Q. 赤ちゃんの月齢やアレルギー情報は外部に送られますか？ <span>▼</span></summary>
+      <p style="padding:12px 16px;font-size:13px;color:#475569;margin:0;background:#f8fafc;">入力した月齢・アレルギー・好みの情報はすべてお使いのブラウザ内だけで処理され、サーバーへ送信・保存されることはありません。個人を特定できる情報を入力する必要もなく、安心してご利用いただけます。</p>
+    </details>
+    
+    
+    <details style="border:1px solid #e2e8f0;border-radius:8px;margin-bottom:8px;overflow:hidden;">
+      <summary style="padding:12px 16px;cursor:pointer;font-size:14px;font-weight:600;color:#334155;background:#fff;list-style:none;display:flex;justify-content:space-between;align-items:center;">Q. 月齢が進むたびに使い直せますか？ <span>▼</span></summary>
+      <p style="padding:12px 16px;font-size:13px;color:#475569;margin:0;background:#f8fafc;">はい。5〜18ヶ月の各時期に対応しているので、ゴックン期からパクパク期まで成長に合わせて何度でも提案を更新できます。新しい食材を試す前のメニュー検討にも繰り返しお使いください。</p>
     </details>
     <details style="border:1px solid #e2e8f0;border-radius:8px;margin-bottom:8px;overflow:hidden;">
-      <summary style="padding:12px 16px;cursor:pointer;font-size:14px;font-weight:600;color:#334155;background:#fff;list-style:none;display:flex;justify-content:space-between;align-items:center;">Q. このサービスは無料で使えますか？ <span>▼</span></summary>
-      <p style="padding:12px 16px;font-size:13px;color:#475569;margin:0;background:#f8fafc;">はい、完全無料でご利用いただけます。登録・ログイン不要で、すぐにお使いいただけます。</p>
+      <summary style="padding:12px 16px;cursor:pointer;font-size:14px;font-weight:600;color:#334155;background:#fff;list-style:none;display:flex;justify-content:space-between;align-items:center;">Q. 離乳食診断を使うベストなタイミングはいつですか？ <span>▼</span></summary>
+      <p style="padding:12px 16px;font-size:13px;color:#475569;margin:0;background:#f8fafc;">新しい月齢ステージに移行する前・初めての食材を試す前・「食べてくれない」などの悩みが出たタイミングが特に効果的です。たとえば7ヶ月に入る直前に「中期（モグモグ期）」で診断すると、移行後すぐに使える食材リストとレシピを事前に把握できます。月齢の節目ごとに診断し直すことをおすすめします。</p>
     </details>
     <details style="border:1px solid #e2e8f0;border-radius:8px;margin-bottom:8px;overflow:hidden;">
-      <summary style="padding:12px 16px;cursor:pointer;font-size:14px;font-weight:600;color:#334155;background:#fff;list-style:none;display:flex;justify-content:space-between;align-items:center;">Q. 入力したデータはどこに保存されますか？ <span>▼</span></summary>
-      <p style="padding:12px 16px;font-size:13px;color:#475569;margin:0;background:#f8fafc;">入力データはサーバーに送信されません。お使いのブラウザ上でのみ処理されます。</p>
-    </details>
-    <details style="border:1px solid #e2e8f0;border-radius:8px;margin-bottom:8px;overflow:hidden;">
-      <summary style="padding:12px 16px;cursor:pointer;font-size:14px;font-weight:600;color:#334155;background:#fff;list-style:none;display:flex;justify-content:space-between;align-items:center;">Q. 何度でも使えますか？ <span>▼</span></summary>
-      <p style="padding:12px 16px;font-size:13px;color:#475569;margin:0;background:#f8fafc;">はい、何度でも無料でご利用いただけます。条件を変えてお試しいただけます。</p>
+      <summary style="padding:12px 16px;cursor:pointer;font-size:14px;font-weight:600;color:#334155;background:#fff;list-style:none;display:flex;justify-content:space-between;align-items:center;">Q. アレルギーがあっても診断結果は参考になりますか？ <span>▼</span></summary>
+      <p style="padding:12px 16px;font-size:13px;color:#475569;margin:0;background:#f8fafc;">はい。Q3でアレルギーの種類（卵・乳製品・小麦など）を選択すると、その食材を除いた安全なおすすめ食材リストとアレルギー注意事項が表示されます。ただし重篤なアレルギーがある場合や複数のアレルギーがある場合は、本ツールの情報をもとに自己判断せず、必ずかかりつけの小児科医・アレルギー専門医にご相談ください。</p>
     </details>
   </div>
 </section>
 
-<section style="background:#f0f9ff;border-top:1px solid #bae6fd;padding:16px;text-align:center;font-size:12px;color:#0369a1;">
+<div class="max-w-2xl mx-auto px-4"><section  style="background:#f0f9ff;border:1px solid #bae6fd;padding:16px;text-align:center;font-size:12px;color:#0369a1;border-radius:14px;margin-bottom:16px;">
   <p style="margin:0 0 4px;font-weight:600;">📧 お問い合わせ</p>
   <p style="margin:0;">ご意見・ご要望・不具合のご報告は <a href="mailto:appadaycreator@gmail.com" style="color:#0369a1;font-weight:bold;">appadaycreator@gmail.com</a> または <a href="contact.html" style="color:#0369a1;">お問い合わせフォーム</a> へ</p>
-</section>
+</section></div>
 <!-- Amazon Affiliate Links -->
-<div style="margin-top: 2rem; padding: 1rem; background: #f3f4f6; border-radius: 0.75rem; text-align: center;">
-  <p style="margin-bottom: 1rem; font-size: 0.9rem; color: #666;">関連商品をチェック</p>
-  <a class="js-track-affiliate" href="https://amazon.com/?tag=appadaycrea0f-22" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 0.75rem 1.5rem; background: #FF9900; color: white; border-radius: 0.5rem; text-decoration: none; font-weight: 600;" data-platform="Amazon" data-item-name="Amazon商品" data-link-type="affiliate_link">Amazonで探す</a>
+<div id="amazon-section" style="margin-top: 2rem; padding: 1.25rem; background: #fffbeb; border-radius: 0.75rem; text-align: center; border: 2px solid #f59e0b;">
+  <p style="margin-bottom: 0.35rem; font-size: 1rem; font-weight: 700; color: #b45309;">🍼 離乳食・ベビーグッズを探しているなら</p>
+  <p style="margin-bottom: 1rem; font-size: 0.82rem; color: #78350f;">調理器具・月齢別ベビーフード・離乳食食器はAmazonでまとめてチェックできます</p>
+  <a class="js-track-affiliate" href="https://amazon.com/?tag=appadaycrea0f-22" target="_blank" rel="noopener noreferrer" style="display: block; padding: 0.875rem 1.75rem; background: #FF9900; color: white; border-radius: 0.5rem; text-decoration: none; font-weight: 700; font-size: 0.95rem;" data-platform="Amazon" data-item-name="離乳食グッズ" data-link-type="affiliate_link">🛒 離乳食グッズをAmazonで今すぐ探す →</a>
 </div>
+<div class="max-w-2xl mx-auto px-4 mb-4" id="related-services-section">
 <!-- Related Services -->
-<section style="margin-top:28px;padding:20px 16px;background:#f8fafc;border-radius:12px;">
-  <h3 style="font-size:14px;font-weight:700;color:#64748b;margin-bottom:12px;letter-spacing:0.03em;">関連サービス</h3>
-  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px;">
-    <a href="https://appadaycreator.com/medical-expense-advisor/" class="related-link">医療費・高額療養費診断</a>
-    <a href="https://appadaycreator.com/camping-gear-advisor/" class="related-link">キャンプ・アウトドア費用診断</a>
-    <a href="https://appadaycreator.com/gadget-timing-advisor/" class="related-link">スマホ・PC買い替えタイミング診断</a>
-    <a href="https://appadaycreator.com/online-learning-advisor/" class="related-link">オンライン学習費用診断</a>
+<section class="bg-white rounded-2xl shadow-md p-5" style="opacity: 0.85; border: 1px solid #e2e8f0;">
+  <h3 style="font-size:13px;font-weight:600;color:#94a3b8;margin-bottom:10px;letter-spacing:0.03em;">関連サービス</h3>
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 8px;">
+    <a href="https://appadaycreator.com/medical-expense-advisor/" class="related-link" style="font-size:12px;">医療費・高額療養費診断</a>
+    <a href="https://appadaycreator.com/camping-gear-advisor/" class="related-link" style="font-size:12px;">キャンプ・アウトドア費用診断</a>
+    <a href="https://appadaycreator.com/gadget-timing-advisor/" class="related-link" style="font-size:12px;">スマホ・PC買い替えタイミング診断</a>
+    <a href="https://appadaycreator.com/online-learning-advisor/" class="related-link" style="font-size:12px;">オンライン学習費用診断</a>
   </div>
 </section>
+</div>
 
     
-    <!-- phase8-social-proof -->
+    <div class="max-w-2xl mx-auto px-4">
+<!-- phase8-social-proof -->
     <div class="card p-5 mb-4">
       <h3 class="font-bold text-gray-800 mb-3 text-sm">💬 こんなふうに活用されています</h3>
       <div class="space-y-3">
@@ -711,42 +1358,252 @@ function restart() {
       </div>
       <div id="bfa-copy-toast" style="display:none;text-align:center;margin-top:6px;font-size:11px;color:#059669;font-weight:bold;">✅ コピーしました</div>
     </div>
-    <!-- rakuten-affiliate-block -->
-    <div style="border:1px solid #BF0000;background:#fff9f9;border-radius:10px;padding:14px;margin:12px auto;max-width:480px;text-align:center;">
-      <p style="font-size:0.85rem;color:#4b5563;margin-bottom:8px;">🛒 関連商品を楽天市場で探す</p>
-      <a href="https://hb.afl.rakuten.co.jp/ichiba/541ad0d2.ce2bed12.541ad0d3.a1a2318c/?pc=https%3A%2F%2Fsearch.rakuten.co.jp%2Fsearch%2Fmall%2F%25E9%259B%25A2%25E4%25B9%25B3%25E9%25A3%259F%2520%25E6%259C%25AC%2F&link_type=text" target="_blank" rel="nofollow sponsored noopener"
-         style="display:inline-block;background:#BF0000;color:white;padding:10px 24px;border-radius:8px;font-weight:bold;font-size:14px;text-decoration:none;">
-        楽天市場で「離乳食 本」を検索 →
-      </a>
-    </div>
+</div>
+<!-- r31-use-cases -->
+<div style="margin:1.5rem auto;max-width:760px;padding:0 1rem">
+<h2 style="font-size:1.125rem;font-weight:700;margin:0 0 1rem;color:#1e293b;border-left:4px solid #4f46e5;padding-left:10px">こんな方・シーンで役立ちます</h2>
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.75rem">
+<div style="padding:1rem;background:#f8fafc;border:1px solid #e2e8f0;border-radius:.75rem">
+<div style="font-size:1.5rem;margin-bottom:.4rem">🤱</div>
+<div style="font-weight:700;font-size:.9rem;color:#1e293b;margin-bottom:.4rem">育児中のパパ・ママ</div>
+<div style="font-size:.85rem;color:#64748b;line-height:1.7">毎日の授乳回数・睡眠時間・発育記録を簡単に管理して、育児の振り返りや医師への報告に役立てたい方に。成長グラフで月齢別の変化を見える化できます。</div>
+</div>
+<div style="padding:1rem;background:#f8fafc;border:1px solid #e2e8f0;border-radius:.75rem">
+<div style="font-size:1.5rem;margin-bottom:.4rem">👨‍👩‍👧</div>
+<div style="font-weight:700;font-size:.9rem;color:#1e293b;margin-bottom:.4rem">共働き・保活中の家庭</div>
+<div style="font-size:.85rem;color:#64748b;line-height:1.7">保育園の費用・認可・認可外の違い・保活のスケジュールを把握して計画的に準備したい家庭に。費用シミュレーションで家計への影響を事前確認できます。</div>
+</div>
+<div style="padding:1rem;background:#f8fafc;border:1px solid #e2e8f0;border-radius:.75rem">
+<div style="font-size:1.5rem;margin-bottom:.4rem">🏥</div>
+<div style="font-weight:700;font-size:.9rem;color:#1e293b;margin-bottom:.4rem">出産・妊娠中の方</div>
+<div style="font-size:.85rem;color:#64748b;line-height:1.7">出産費用・産休育休中の収入変化・育児グッズの準備リストを確認して、出産前から安心して準備したい方に。</div>
+</div>
+<div style="padding:1rem;background:#f8fafc;border:1px solid #e2e8f0;border-radius:.75rem">
+<div style="font-size:1.5rem;margin-bottom:.4rem">📚</div>
+<div style="font-weight:700;font-size:.9rem;color:#1e293b;margin-bottom:.4rem">子どもの教育費が気になる親</div>
+<div style="font-size:.85rem;color:#64748b;line-height:1.7">幼稚園から大学までの教育費の総額をシミュレーションして、早いうちから学資保険・積立を検討したい方に。</div>
+</div>
+</div>
+</div>
+<!-- r31-extended-faq -->
+<div style="margin:1.5rem auto;max-width:760px;padding:0 1rem">
+<div style="background:white;border-radius:16px;padding:1.5rem;box-shadow:0 4px 20px rgba(0,0,0,.08)">
+<h2 style="font-size:1.05rem;font-weight:700;margin:0 0 1rem;border-left:4px solid #4f46e5;padding-left:10px;color:#1e293b">よくある質問（詳細）</h2>
+<div style="margin-bottom:1.2rem;padding-bottom:1.2rem;border-bottom:1px solid #f1f5f9">
+<p style="font-size:.9rem;font-weight:700;color:#1e293b;margin:0 0 .5rem">Q: 離乳食はいつまで続ければよいですか？</p>
+<p style="font-size:.85rem;color:#475569;line-height:1.8;margin:0">A: 一般的に生後18ヶ月（1歳6ヶ月）頃を目安に、やわらかい固形食が食べられるようになったら離乳食は完了です。ただし赤ちゃんの発達には個人差があるため、無理に急がず「カミカミ・モグモグができているか」を目安に進めてください。進め方が心配な場合は1歳半健診で栄養士や保健師に相談するのがおすすめです。</p>
+</div>
+<div style="margin-bottom:1.2rem;padding-bottom:1.2rem;border-bottom:1px solid #f1f5f9">
+<p style="font-size:.9rem;font-weight:700;color:#1e293b;margin:0 0 .5rem">Q: 赤ちゃんが離乳食を食べてくれない場合はどうすればよいですか？</p>
+<p style="font-size:.85rem;color:#475569;line-height:1.8;margin:0">A: 同じ食材でも温度・固さ・見た目・提供するスプーンの種類を変えるだけで食べるケースが多くあります。嫌がる場合は10〜15回繰り返し試すことで受け入れるようになることも。無理強いは逆効果なので、1口でも食べたら大げさに褒めることが大切です。母乳・ミルクが主体の時期なので、食事量が少なくても栄養不足にはなりにくいと理解しておくと気持ちが楽になります。</p>
+</div>
+<div style="margin-bottom:1.2rem;padding-bottom:1.2rem;border-bottom:1px solid #f1f5f9">
+<p style="font-size:.9rem;font-weight:700;color:#1e293b;margin:0 0 .5rem">Q: 離乳食の冷凍保存はどのくらいの期間できますか？</p>
+<p style="font-size:.85rem;color:#475569;line-height:1.8;margin:0">A: 衛生的に調理・冷凍した場合、おかゆや野菜ペーストは冷凍庫で約2週間保存が目安です。製氷皿で1回分ずつ小分けにして凍らせると使いやすく、解凍はレンジで30〜60秒（中心までしっかり加熱）が基本です。魚や肉類は傷みやすいため1週間以内を目安に使い切るようにしてください。再冷凍はNGです。</p>
+</div>
+<div style="margin-bottom:1.2rem;padding-bottom:1.2rem;border-bottom:1px solid #f1f5f9">
+<p style="font-size:.9rem;font-weight:700;color:#1e293b;margin:0 0 .5rem">Q: 市販のベビーフードを使っても問題ありませんか？</p>
+<p style="font-size:.85rem;color:#475569;line-height:1.8;margin:0">A: まったく問題ありません。市販のベビーフードは国の基準（食品衛生法）に従って製造・管理されており、月齢別に固さや栄養バランスが整えられています。忙しい日・外出時・疲れた日に積極活用するのはむしろ賢い選択です。手作りと上手に組み合わせることで、育児の負担を減らしながら安全な離乳食を続けられます。</p>
+</div>
+
+</div>
+</div>
+<!-- r31-tool-notice -->
+<div style="margin:1.5rem auto;max-width:760px;padding:0 1rem">
+<div style="padding:1.25rem 1.5rem;background:#fef3c7;border:1px solid #fbbf24;border-radius:.75rem">
+<h3 style="font-size:1rem;font-weight:700;margin:0 0 .75rem;color:#92400e">⚠️ ご利用時の注意事項</h3>
+<ul style="margin:0;padding-left:1.25rem;font-size:.88rem;color:#78350f;line-height:2">
+<li style='margin-bottom:.4rem'>本ツールの情報はあくまで参考値です。お子様の発育・成長には個人差があります</li>
+<li style='margin-bottom:.4rem'>お子様の体調・発達に気になる点がある場合は小児科医にご相談ください</li>
+<li style='margin-bottom:.4rem'>保育園・幼稚園の入園基準・費用は自治体により異なります。必ず各自治体の窓口でご確認ください</li>
+<li style='margin-bottom:.4rem'>補助金・助成金の金額・条件は自治体・年度により変更になる場合があります</li>
+<li style='margin-bottom:.4rem'>離乳食・アレルギー対応食については必ず小児科医や栄養士の指導を受けてください</li>
+</ul>
+</div>
+</div>
+<!-- r31-tool-references -->
+<div style="margin:1.5rem auto;max-width:760px;padding:0 1rem">
+<div style="padding:1.25rem 1.5rem;background:#f8fafc;border:1px solid #e2e8f0;border-radius:.75rem">
+<h3 style="font-size:1rem;font-weight:700;margin:0 0 .75rem;color:#1e293b">📚 関連する公的情報・参考リンク</h3>
+<ul style="margin:0;padding-left:1.25rem;font-size:.88rem;color:#374151;line-height:1.9">
+<li style='margin-bottom:.5rem'><a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kodomo/kodomo_kosodate/index.html" target="_blank" rel="noopener noreferrer" style="color:#4f46e5">厚生労働省 子ども・子育て支援</a> — 保育所・給付金・産休育休制度の公的情報</li>
+<li style='margin-bottom:.5rem'><a href="https://www8.cao.go.jp/shoushi/index.html" target="_blank" rel="noopener noreferrer" style="color:#4f46e5">内閣府 子ども・子育て本部</a> — 幼児教育無償化・子育て支援政策の詳細</li>
+<li style='margin-bottom:.5rem'><a href="https://www.mext.go.jp/a_menu/shotou/yochien/index.htm" target="_blank" rel="noopener noreferrer" style="color:#4f46e5">文部科学省 幼稚園・保育</a> — 就学前教育・保育の制度・指針</li>
+<li style='margin-bottom:.5rem'><a href="https://www.jpeds.or.jp/" target="_blank" rel="noopener noreferrer" style="color:#4f46e5">日本小児科学会</a> — 子どもの健康・発育に関する医学的情報</li>
+</ul>
+</div>
+</div>
+<!-- r31-tool-about -->
+<div style="margin:1.5rem auto;max-width:760px;padding:0 1rem">
+<div style="padding:1.25rem 1.5rem;background:#f0f9ff;border:1px solid #bae6fd;border-radius:.75rem">
+<h3 style="font-size:1rem;font-weight:700;margin:0 0 .75rem;color:#0c4a6e">ℹ️ このツールについて</h3>
+<p style="margin:0;font-size:.88rem;color:#0c4a6e;line-height:1.9">「離乳食・ベビーフードアドバイザー」はAppADayCreatorが提供する無料Webツールです。育児・子育てに関する情報を素早く手軽に確認できます。会員登録・アプリインストール不要で、ブラウザからすぐにご利用いただけます。すべての処理はブラウザ内で完結するため、入力した情報が外部サーバーに送信されることはなく、プライバシーも保護されます。AppADayCreatorでは、日常生活のあらゆるシーンで役立つWebツールを400本以上無料で提供しています。金融・健康・育児・キャリア・旅行など幅広いカテゴリのツールをご活用ください。</p>
+</div>
+</div>
+<!-- r31-extra-guide -->
+<div style="margin:1.5rem auto;max-width:760px;padding:0 1rem">
+<div style="background:white;border-radius:16px;padding:1.5rem;box-shadow:0 4px 20px rgba(0,0,0,.06)">
+<h3 style="font-size:.95rem;font-weight:700;margin:1.25rem 0 .6rem;color:#1e293b">関連ツールのご紹介</h3>
+
+</div>
+</div>
+
 <!-- phase10-rakuten-updated -->
 
 <!-- AF_PLACEHOLDER: モグモ (No.218) - リンク未取得 -->
 
-    <!-- Amazon アフィリエイト -->
-    <div style="background:#f0fdf4;border:1px solid #86efac;border-radius:10px;padding:14px;margin:16px auto;max-width:500px;text-align:center;">
-      <p style="font-size:0.78em;color:#15803d;font-weight:bold;margin-bottom:8px;">📚 関連書籍・グッズをAmazonでチェック</p>
-      <a href="https://www.amazon.co.jp/s?k=離乳食+本+おすすめ&tag=appadaycrea0f-22" target="_blank" rel="noopener noreferrer" class="js-track-affiliate" data-platform="Amazon" data-item-name="離乳食 関連書籍" data-link-type="affiliate_link" style="display:inline-block;background:#ff9900;color:#fff;padding:9px 20px;border-radius:8px;font-size:0.85em;font-weight:bold;text-decoration:none;margin:4px;">🛒 離乳食 関連書籍</a>
-      <a href="https://www.amazon.co.jp/s?k=離乳食+入門+書籍&tag=appadaycrea0f-22" target="_blank" rel="noopener noreferrer" class="js-track-affiliate" data-platform="Amazon" data-item-name="離乳食 入門ガイド" data-link-type="affiliate_link" style="display:inline-block;background:#ff9900;color:#fff;padding:9px 20px;border-radius:8px;font-size:0.85em;font-weight:bold;text-decoration:none;margin:4px;">🛒 離乳食 入門ガイド</a>
-    </div>
 
-<div style="margin:24px auto;max-width:860px;padding:16px 20px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;">
+<div style="margin:24px auto;max-width:720px;padding:16px 20px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;">
   <p style="font-size:12px;font-weight:600;color:#94a3b8;text-align:center;margin:0 0 12px;letter-spacing:0.05em;">スポンサーリンク</p>
   <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;">
-    <a href="https://px.a8.net/svt/ejp?a8mat=4B3WJ6+FQ9JMY+1LP8+BY642" rel="nofollow noopener noreferrer" target="_blank" style="display:inline-flex;align-items:center;padding:8px 14px;background:#ffffff;border:1px solid #cbd5e1;border-radius:8px;font-size:13px;color:#334155;text-decoration:none;white-space:nowrap;">日々の生活にハッピーをプラス！《ハピタス》</a><img border="0" width="1" height="1" src="https://www14.a8.net/0.gif?a8mat=4B3WJ6+FQ9JMY+1LP8+BY642" alt="">
-    <a href="https://px.a8.net/svt/ejp?a8mat=4B3WJ7+18PTPM+1O96+699KI" rel="nofollow noopener noreferrer" target="_blank" style="display:inline-flex;align-items:center;padding:8px 14px;background:#ffffff;border:1px solid #cbd5e1;border-radius:8px;font-size:13px;color:#334155;text-decoration:none;white-space:nowrap;">《ヨガ》をはじめてみませんか？ホットヨガスタジオLAVA</a><img border="0" width="1" height="1" src="https://www12.a8.net/0.gif?a8mat=4B3WJ7+18PTPM+1O96+699KI" alt="">
-    <a href="https://px.a8.net/svt/ejp?a8mat=457C4C+C23BCA+0K+10FXXU" rel="nofollow noopener noreferrer" target="_blank" style="display:inline-flex;align-items:center;padding:8px 14px;background:#ffffff;border:1px solid #cbd5e1;border-radius:8px;font-size:13px;color:#334155;text-decoration:none;white-space:nowrap;">アフィリエイトならA8.net</a><img border="0" width="1" height="1" src="https://www15.a8.net/0.gif?a8mat=457C4C+C23BCA+0K+10FXXU" alt="">
-    <a href="https://px.a8.net/svt/ejp?a8mat=4B3WJ5+C2OQY2+14CS+68EPE" rel="nofollow noopener noreferrer" target="_blank" style="display:inline-flex;align-items:center;padding:8px 14px;background:#ffffff;border:1px solid #cbd5e1;border-radius:8px;font-size:13px;color:#334155;text-decoration:none;white-space:nowrap;">【じゃらん】国内25,000軒の宿をネットで予約OK！2％ポイント還元！</a><img border="0" width="1" height="1" src="https://www11.a8.net/0.gif?a8mat=4B3WJ5+C2OQY2+14CS+68EPE" alt="">
-    <a href="https://px.a8.net/svt/ejp?a8mat=4B3WJ6+FIIWRU+1IRY+1TKOKI" rel="nofollow noopener noreferrer" target="_blank" style="display:inline-flex;align-items:center;padding:8px 14px;background:#ffffff;border:1px solid #cbd5e1;border-radius:8px;font-size:13px;color:#334155;text-decoration:none;white-space:nowrap;">ファイナンシャルアカデミー「お金の教養講座」</a><img border="0" width="1" height="1" src="https://www15.a8.net/0.gif?a8mat=4B3WJ6+FIIWRU+1IRY+1TKOKI" alt="">
+    <a href="https://px.a8.net/svt/ejp?a8mat=4B3WJ6+FQ9JMY+1LP8+BY642" rel="nofollow noopener noreferrer" target="_blank" style="display:inline-block;padding:5px 12px;background:#fff;border:1px solid #d1d5db;border-radius:20px;font-size:12px;color:#4b5563;text-decoration:none;white-space:nowrap;">日々の生活にハッピーをプラス！《ハピタス》</a><img border="0" width="1" height="1" src="https://www14.a8.net/0.gif?a8mat=4B3WJ6+FQ9JMY+1LP8+BY642" alt="">
+    <a href="https://px.a8.net/svt/ejp?a8mat=4B3VR6+GFV6NE+3CJQ+64C3M" rel="nofollow noopener noreferrer" target="_blank" style="display:inline-block;padding:5px 12px;background:#fff;border:1px solid #d1d5db;border-radius:20px;font-size:12px;color:#4b5563;text-decoration:none;white-space:nowrap;">本・雑誌・ビジネス書が聴ける【audiobook.jp】</a><img border="0" width="1" height="1" src="https://www11.a8.net/0.gif?a8mat=4B3VR6+GFV6NE+3CJQ+64C3M" alt="">
   </div>
 </div>
 
-
-<div style="background:#f8fafc;border-top:1px solid #e2e8f0;padding:12px 16px;margin:0;font-size:11px;color:#64748b;text-align:center;line-height:1.7;">
+<div style="background:#f8fafc;border-top:1px solid #e2e8f0;padding:12px 16px;margin:0 auto;max-width:720px;font-size:11px;color:#64748b;text-align:center;line-height:1.7;">
   <strong>免責事項</strong>：本ツールの計算・診断結果はあくまで参考情報です。お子様の発達・学習に関する専門的なご相談は、医師・教育専門家にお問い合わせください。本サービスの利用により生じた損害について、当サイトは一切の責任を負いません。
 </div>
 <div style="text-align:center;padding:8px;font-size:11px;"><a href="privacy-policy.html" style="color:inherit;font-size:11px;opacity:0.7;text-decoration:underline;">プライバシーポリシー</a></div>
 
 </div>
+<div style="text-align:center;padding:10px 16px 14px;background:#eef2ff;border-top:2px solid #c7d2fe;margin-top:8px">
+<a href="/blog/" style="color:#4f46e5;font-size:.85rem;font-weight:700">📖 マネー・育児・キャリアのコラムを読む →</a>
+</div>
+
+<section aria-labelledby="faq-h" class="bg-white rounded-2xl shadow-md p-4 mb-4" style="max-width:740px;margin-left:auto;margin-right:auto">
+  
+<div style="background:#f0f7ff;border:1px solid #bfdbfe;border-radius:12px;padding:1.5rem 1.75rem;margin:2rem 0" id="tool-desc-box">
+  <h2 style="font-size:1.05rem;font-weight:800;color:#1e40af;margin:0 0 1rem">📋 このツールの詳細</h2>
+  <p style="color:#374151;margin:0 0 .75rem;line-height:1.8">「離乳食・ベビーフードアドバイザー」は、赤ちゃんの月齢・アレルギー・好みから離乳食の食材とレシピを無料提案。5〜18ヶ月対応。</p>
+</div>
+<!-- r22-editorial -->
+<div style="background:#fef9c3;border:1px solid #fef08a;border-radius:.75rem;padding:1.5rem;margin:1.5rem 0">
+  <h2 style="font-size:1.05rem;font-weight:800;color:#713f12;margin:0 0 1rem;border-left:4px solid #ca8a04;padding-left:.75rem">育児・子育て費用の基礎データ（2024〜2025年）</h2>
+  <p style="font-size:.88rem;color:#4b5563;margin:0 0 .75rem">文部科学省・厚生労働省のデータをもとに、子育てにかかる費用と公的支援を整理しました。</p>
+  <table style="width:100%;border-collapse:collapse;font-size:.83rem">
+    <thead>
+      <tr style="background:#fef08a">
+        <th style="padding:.5rem .75rem;text-align:left;border:1px solid #fef08a;color:#713f12">項目</th>
+        <th style="padding:.5rem .75rem;text-align:left;border:1px solid #fef08a;color:#713f12">データ</th>
+        <th style="padding:.5rem .75rem;text-align:left;border:1px solid #fef08a;color:#713f12">出典</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="background:#fef9c3">
+        <td style="padding:.5rem .75rem;border:1px solid #fef08a;font-weight:600;color:#713f12">学校教育費（幼〜高校・公立のみ）</td>
+        <td style="padding:.5rem .75rem;border:1px solid #fef08a"><strong>約570万円</strong></td>
+        <td style="padding:.5rem .75rem;border:1px solid #fef08a;font-size:.78rem;color:#6b7280">文部科学省「子供の学習費調査」2022年版</td>
+      </tr>
+      <tr style="">
+        <td style="padding:.5rem .75rem;border:1px solid #fef08a;font-weight:600;color:#713f12">保育所の平均月額費用（認可・ゼロ歳児）</td>
+        <td style="padding:.5rem .75rem;border:1px solid #fef08a"><strong>約3〜6万円（所得に応じた応能負担）</strong></td>
+        <td style="padding:.5rem .75rem;border:1px solid #fef08a;font-size:.78rem;color:#6b7280">内閣府「子ども・子育て支援新制度」</td>
+      </tr>
+      <tr style="background:#fef9c3">
+        <td style="padding:.5rem .75rem;border:1px solid #fef08a;font-weight:600;color:#713f12">児童手当の支給額</td>
+        <td style="padding:.5rem .75rem;border:1px solid #fef08a"><strong>3歳未満：月15,000円 / 3歳〜中学生：月10,000円</strong></td>
+        <td style="padding:.5rem .75rem;border:1px solid #fef08a;font-size:.78rem;color:#6b7280">内閣府「児童手当制度のご案内」</td>
+      </tr>
+      <tr style="">
+        <td style="padding:.5rem .75rem;border:1px solid #fef08a;font-weight:600;color:#713f12">出産育児一時金</td>
+        <td style="padding:.5rem .75rem;border:1px solid #fef08a"><strong>50万円（産科医療補償制度加入医療機関）</strong></td>
+        <td style="padding:.5rem .75rem;border:1px solid #fef08a;font-size:.78rem;color:#6b7280">厚生労働省「出産育児一時金」2023年4月〜</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<!-- r20-tool-links -->
+<div style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:.75rem;padding:1.25rem 1.5rem;margin:2rem 0">
+  <p style="font-weight:700;color:#374151;margin:0 0 .75rem;font-size:.9rem">📖 あわせて読みたいコラム記事</p>
+  <ul style="margin:0;padding-left:1.25rem;color:#4b5563;line-height:2">
+    <li><a href="/blog/childcare-cost-guide/" style="color:#4f46e5">子育て費用の全体像と節約法</a></li>
+    <li><a href="/blog/maternity-benefits-guide/" style="color:#4f46e5">出産手当金・育児休業給付の受け取り方</a></li>
+  </ul>
+</div>
+<div id="tool-disclaimer" style="background:#fef3c7;border:2px solid #f59e0b;border-left:5px solid #dc2626;border-radius:10px;padding:1.25rem 1.5rem;margin:1.5rem 0;font-size:.95rem">
+  <p style="font-weight:700;color:#92400e;margin:0 0 .75rem;font-size:1.05rem">⚠️ 医療免責事項 — 必ずお読みください</p>
+  <p style="color:#78350f;margin:0 0 .5rem;line-height:1.7">本ツールの診断結果はあくまで参考情報です。お子様の発達・成長に関する専門的なご相談・診断は、小児科医・栄養士・育児支援の専門家にお問い合わせください。本サービス利用による損害について、当サイトは一切の責任を負いません。</p>
+  <ul style="margin:0;padding-left:1.25rem;color:#4b5563;line-height:1.9"><li><a href="https://www.caa.go.jp/" target="_blank" rel="noopener noreferrer" style="color:#4f46e5;font-size:.85rem">消費者庁「くらしの安心ガイド」</a></li></ul>
+</div>
+<section style="margin:2.5rem 0;padding:1.75rem 2rem;background:#f8fafc;border-radius:14px;border:1px solid #e2e8f0">
+<h2 style="font-size:1.1rem;font-weight:800;color:#1e3a5f;margin:0 0 1.2rem;border-left:4px solid #3b82f6;padding-left:.75rem">離乳食の進め方と栄養バランスを無理なく学ぶガイド</h2>
+<h3 style="font-size:.975rem;font-weight:700;color:#1e40af;margin:1.25rem 0 .5rem">離乳食のステージ別の進め方と食材の目安</h3>
+<p style="color:#374151;line-height:1.85;margin:0 0 .75rem">離乳食は「ごっくん期（5〜6か月）・もぐもぐ期（7〜8か月）・かみかみ期（9〜11か月）・パクパク期（12〜18か月）」の4段階で進めます。ごっくん期は10倍がゆから開始し、1種類ずつ新しい食材を3日おきに試します。食材の硬さの目安は、ごっくん期がなめらかなペースト状・もぐもぐ期が豆腐くらいの柔らかさ・かみかみ期が指でつぶせる硬さ・パクパク期が柔らかく調理した大人食に近い硬さです。アレルギーリスクの高い「特定原材料（卵・乳・小麦・えびなど）」は午前中の授乳後に少量から試すのが安全です。</p>
+<h3 style="font-size:.975rem;font-weight:700;color:#1e40af;margin:1.25rem 0 .5rem">赤ちゃんに必要な栄養素と食材の選び方</h3>
+<p style="color:#374151;line-height:1.85;margin:0 0 .75rem">母乳・ミルクに不足しがちな鉄分は7〜11か月から積極的に補給が必要です。鉄分を多く含む食材（ほうれん草・レバー・赤身の魚・豆腐）をかみかみ期から取り入れましょう。カルシウムはチーズ・ヨーグルト・しらす干しから、DHAは白身魚から補給できます。赤ちゃんの腎臓は未熟なため塩分は最小限に抑え、大人の1/5以下（1日1g以下）を目安にします。市販のベビーフードは栄養基準を満たしており、忙しい時や外出時の活用は問題ありません。</p>
+<h3 style="font-size:.975rem;font-weight:700;color:#1e40af;margin:1.25rem 0 .5rem">離乳食の悩みを解消する実践的なアドバイス</h3>
+<p style="color:#374151;line-height:1.85;margin:0 0 .75rem">「食べてくれない」という悩みは多くの親が経験します。新しい食材は10〜15回試して受け入れられることもあり、1〜2回の拒否で諦めないことが重要です。「ながら食べ」を避けて食事に集中できる環境を作り、食べた量より食べる楽しさを優先することが食事の良い習慣づけにつながります。食材は週末にまとめてゆでて冷凍（1〜2週間保存可能）すると平日の準備が大幅に楽になります。離乳食の進み具合に不安がある場合は1歳半検診・3歳児健診を活用して栄養士や保健師に相談しましょう。</p>
+<div style="background:#f0f9ff;border-left:4px solid #3b82f6;padding:1rem 1.25rem;margin:1.25rem 0;border-radius:0 8px 8px 0">
+<p style="font-weight:700;color:#1e40af;margin:0 0 .4rem">まとめ</p>
+<p style="color:#1e3a8a;line-height:1.8;margin:0;font-size:.925rem">離乳食は赤ちゃんの「食べる力」を育てる大切な時間です。完璧を目指すより、赤ちゃんのペースに合わせて楽しい食事体験を重ねることが最も重要です。食材のアレルギーには注意しつつ、多様な食材を少しずつ経験させることが将来の食の好みや健康の基礎を作ります。</p>
+</div>
+</section>
+
+<h2 id="faq-h" style="font-size:1.05rem;font-weight:700;margin-bottom:12px;border-left:4px solid #4f46e5;padding-left:10px;">よくある質問</h2>
+  <dl style="line-height:1.8;">
+    
+    
+    
+  </dl>
+</section>
+<div style="background:#eef2ff;border-left:4px solid #4f46e5;border-radius:.5rem;padding:1rem 1.25rem;margin:1.5rem auto;max-width:760px;font-size:.875rem">
+<p style="margin:0 0 .5rem;font-weight:700;color:#3730a3">📖 お役立ちコラム</p>
+<ul style="margin:0;padding-left:1.25rem;color:#4f46e5;line-height:2">
+<li><a href="/blog/baby-food-start-guide/" style="color:#4f46e5">離乳食の始め方と進め方【月齢別ガイド】</a></li>
+<li><a href="/blog/baby-allergy-foods/" style="color:#4f46e5">赤ちゃんのアレルギー食材と安全な導入方法</a></li>
+<li><a href="/blog/baby-food-freezing-tips/" style="color:#4f46e5">離乳食の冷凍保存テクニックと時短レシピ</a></li>
+</ul>
+</div>
+<!-- r17-mobile-ux -->
+<!-- V5: フローティングCTAバー（縦長ページでのスクロール疲れ対策） -->
+<div id="float-cta-bar" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:8000;padding:10px 16px;background:linear-gradient(135deg,#10B981,#059669);box-shadow:0 -2px 12px rgba(16,185,129,0.4);">
+  <button onclick="startDiagnosis()" style="width:100%;min-height:48px;background:white;color:#10B981;border:none;border-radius:8px;font-size:0.95rem;font-weight:700;cursor:pointer;" aria-label="今すぐ無料で離乳食診断">無料で月齢別診断 →</button>
+</div>
+<script>
+(function(){
+  var floatBar = document.getElementById('float-cta-bar');
+  if (!floatBar) return;
+  var shown = false;
+  window.addEventListener('scroll', function(){
+    var onIntro = document.getElementById('screen-intro') && document.getElementById('screen-intro').classList.contains('active');
+    if (!onIntro) { floatBar.style.display = 'none'; return; }
+    var shouldShow = window.scrollY > 300;
+    if (shouldShow !== shown) {
+      floatBar.style.display = shouldShow ? 'block' : 'none';
+      shown = shouldShow;
+    }
+  }, {passive:true});
+})();
+</script>
+<a href="#top" id="back-to-top" aria-label="ページトップへ戻る" style="display:none;position:fixed;bottom:80px;right:20px;background:#4f46e5;color:#fff;border:none;border-radius:50%;width:48px;height:48px;font-size:1.4rem;line-height:48px;text-align:center;text-decoration:none;box-shadow:0 4px 12px rgba(79,70,229,.4);z-index:9000;cursor:pointer" title="ページトップへ">↑</a>
+<script>
+(function(){
+  var btn = document.getElementById('back-to-top');
+  if(!btn) return;
+  // M6: ページロード時に追跡表示を初期化
+displayHistory();
+updateTrackingDisplay();
+
+window.addEventListener('scroll', function(){
+    btn.style.display = window.scrollY > 400 ? 'block' : 'none';
+  }, {passive:true});
+})();
+</script>
+<div style="text-align:center;margin:20px auto;max-width:728px;padding:0 16px">
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8427583028015858" data-ad-slot="auto" data-ad-format="auto" data-full-width-responsive="true"></ins>
+<script>try{(adsbygoogle = window.adsbygoogle || []).push({});}catch(e){}</script>
+</div>
+<!-- r31-cookie-banner -->
+<div id="cookie-banner" style="position:fixed;bottom:0;left:0;right:0;background:#fff;color:#1e293b;padding:1rem 1.5rem;display:flex;flex-direction:column;gap:1rem;z-index:9999;font-size:1rem;box-shadow:0 -2px 10px rgba(0,0,0,.2);border-top:3px solid #059669">
+<div style="line-height:1.6">当サイトはCookieおよびGoogle Analyticsを使用しています。<a href="/privacy-policy.html" style="color:#0284c7;font-weight:600;text-decoration:underline">プライバシーポリシー</a>をご確認ください。</div>
+<button onclick="document.getElementById('cookie-banner').style.display='none';window.grantConsent && window.grantConsent()" style="background:#059669;color:#fff;border:none;padding:.75rem 1.5rem;border-radius:.5rem;font-size:1rem;font-weight:600;cursor:pointer;width:100%;transition:background 0.2s" onmouseover="this.style.background='#047857'" onmouseout="this.style.background='#059669'">✅ 同意して閉じる</button>
+</div>
+<script>if(localStorage.getItem('cookie-consent'))document.getElementById('cookie-banner').style.display='none'</script>
+<!-- r46-org-footer -->
+<div style="text-align:center;font-size:11px;color:#9ca3af;padding:6px 0 4px;background:#f8fafc;border-top:1px solid #e5e7eb;">
+  運営: <a href="https://appadaycreator.com/" style="color:#9ca3af;text-decoration:none;">AppADayCreator</a> | <a href="https://tech-and-brace.co.jp/" rel="noopener" style="color:#9ca3af;text-decoration:none;">株式会社Tech&amp;Brace</a>
+</div>
+<script src="/assets/consent-mode.js"></script>
 </body>
 </html>
