@@ -39,11 +39,13 @@ img{max-width:100%;display:block;}
 
 /* ===== HERO ===== */
 .hero-section{position:relative;overflow:hidden;background:linear-gradient(135deg,#F0FDF4 0%,#ECFDF5 50%,#F9FAFB 100%);padding:0;}
-.hero-inner{display:grid;grid-template-columns:1fr 1fr;min-height:540px;align-items:center;max-width:1100px;margin:0 auto;padding:60px 20px 40px;}
+.hero-inner{display:grid;grid-template-columns:1fr 1fr;min-height:640px;align-items:center;max-width:1100px;margin:0 auto;padding:60px 20px 40px;}
 .hero-text{padding-right:40px;}
 .hero-badges{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;}
 .hero-badge{display:inline-flex;align-items:center;gap:5px;background:#fff;border:1px solid #A7F3D0;color:#065F46;font-size:12px;font-weight:600;padding:5px 12px;border-radius:20px;}
 .hero-badge::before{content:'✓';color:#10B981;font-weight:700;}
+.hero-badge.supervisor{background:#FEF3C7;border-color:#FDE68A;color:#92400E;}
+.hero-badge.supervisor::before{content:'👩‍⚕️';color:inherit;}
 .hero-title{font-size:36px;font-weight:800;line-height:1.3;margin-bottom:16px;color:#1F2937;}
 .hero-title strong{color:#10B981;display:block;font-size:42px;}
 .hero-sub{font-size:15px;color:#4B5563;margin-bottom:28px;line-height:1.75;}
@@ -54,12 +56,20 @@ img{max-width:100%;display:block;}
 .btn-cta-main .arrow{font-size:18px;}
 .hero-flow-link{display:block;font-size:13px;color:#6B7280;text-align:left;padding-left:8px;}
 .hero-flow-link a{color:#10B981;font-weight:600;text-decoration:underline;}
-.hero-image-wrap{position:relative;display:flex;justify-content:center;}
-.hero-photo{width:100%;max-width:480px;border-radius:24px;object-fit:cover;height:440px;box-shadow:0 8px 40px rgba(0,0,0,0.12);}
-.hero-photo-badge{position:absolute;bottom:24px;left:-20px;background:#fff;border-radius:16px;padding:12px 16px;box-shadow:0 4px 20px rgba(0,0,0,0.12);display:flex;align-items:center;gap:10px;}
-.hero-photo-badge-icon{width:40px;height:40px;}
-.hero-photo-badge-text{font-size:12px;color:#374151;}
-.hero-photo-badge-text strong{font-size:16px;color:#10B981;display:block;}
+.hero-image-wrap{position:relative;display:flex;flex-direction:column;justify-content:flex-start;gap:0;}
+.hero-photo{width:100%;border-radius:20px 20px 0 0;object-fit:cover;height:290px;box-shadow:0 4px 20px rgba(0,0,0,0.1);}
+.hero-result-card{background:#fff;border-radius:0 0 20px 20px;padding:16px 18px;box-shadow:0 8px 32px rgba(0,0,0,0.1);border:1px solid #E5E7EB;border-top:none;}
+.hero-result-card-header{background:#10B981;color:#fff;border-radius:10px;padding:9px 14px;font-size:13px;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+.hero-chart-row{display:flex;align-items:center;gap:14px;margin-bottom:12px;}
+.hero-donut{width:70px;height:70px;border-radius:50%;background:conic-gradient(#10B981 0% 82%,#E5E7EB 82% 100%);display:flex;align-items:center;justify-content:center;position:relative;flex-shrink:0;}
+.hero-donut::after{content:'';position:absolute;width:48px;height:48px;background:#fff;border-radius:50%;}
+.hero-donut-num{position:relative;z-index:1;font-size:15px;font-weight:800;color:#10B981;}
+.hero-mini-bar-wrap{background:#E5E7EB;border-radius:3px;height:5px;overflow:hidden;margin-bottom:5px;}
+.hero-mini-bar{height:5px;border-radius:3px;background:#10B981;}
+.hero-mini-label{font-size:11px;color:#374151;margin-bottom:2px;}
+.hero-food-row{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;}
+.hero-food-img{width:100%;height:50px;border-radius:8px;object-fit:cover;}
+.hero-food-cap{font-size:10px;text-align:center;color:#6B7280;margin-top:2px;}
 .hero-stats-bar{background:#10B981;padding:16px 20px;}
 .hero-stats-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:0;}
 .hero-stat{text-align:center;padding:12px;border-right:1px solid rgba(255,255,255,0.3);}
@@ -67,13 +77,34 @@ img{max-width:100%;display:block;}
 .hero-stat-num{font-size:26px;font-weight:800;color:#fff;}
 .hero-stat-num span{font-size:14px;font-weight:500;}
 .hero-stat-label{font-size:12px;color:rgba(255,255,255,0.85);margin-top:2px;}
+
+/* Age stage band */
+.stage-band{padding:56px 20px;background:#fff;}
+.stage-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:32px;}
+.stage-card{border-radius:18px;padding:20px 16px;text-align:center;}
+.stage-card-1{background:#FFF7ED;border:2px solid #FED7AA;}
+.stage-card-2{background:#ECFDF5;border:2px solid #A7F3D0;}
+.stage-card-3{background:#EFF6FF;border:2px solid #BFDBFE;}
+.stage-card-4{background:#FDF4FF;border:2px solid #E9D5FF;}
+.stage-badge{display:inline-block;font-size:11px;font-weight:700;padding:3px 10px;border-radius:12px;margin-bottom:10px;}
+.stage-card-1 .stage-badge{background:#FED7AA;color:#9A3412;}
+.stage-card-2 .stage-badge{background:#A7F3D0;color:#065F46;}
+.stage-card-3 .stage-badge{background:#BFDBFE;color:#1E40AF;}
+.stage-card-4 .stage-badge{background:#E9D5FF;color:#6B21A8;}
+.stage-photo{width:100%;height:100px;border-radius:12px;object-fit:cover;margin-bottom:12px;}
+.stage-age{font-size:14px;font-weight:800;color:#1F2937;margin-bottom:4px;}
+.stage-name{font-size:12px;font-weight:600;color:#6B7280;margin-bottom:8px;}
+.stage-desc{font-size:12px;color:#374151;line-height:1.6;}
+
+@media(max-width:900px){.stage-cards{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:520px){.stage-cards{grid-template-columns:1fr;}}
+
 @media(max-width:768px){
   .hero-inner{grid-template-columns:1fr;padding:40px 20px 0;gap:24px;}
   .hero-text{padding-right:0;}
   .hero-title{font-size:26px;}
   .hero-title strong{font-size:32px;}
-  .hero-photo{height:280px;max-width:100%;}
-  .hero-photo-badge{left:0;bottom:12px;}
+  .hero-photo{height:220px;}
   .hero-stats-inner{grid-template-columns:repeat(3,1fr);}
   .hero-stat-num{font-size:20px;}
 }
@@ -87,10 +118,18 @@ img{max-width:100%;display:block;}
 .feature-card{background:#F9FAFB;border-radius:20px;padding:28px 20px;text-align:center;transition:all 0.2s;border:1px solid #E5E7EB;}
 .feature-card:hover{transform:translateY(-4px);box-shadow:0 8px 32px rgba(0,0,0,0.08);border-color:#A7F3D0;}
 .feature-icon{width:56px;height:56px;margin:0 auto 16px;background:#ECFDF5;border-radius:16px;display:flex;align-items:center;justify-content:center;padding:10px;}
+.feature-icon.orange{background:#FFF7ED;}
+.feature-icon.blue{background:#EFF6FF;}
+.feature-icon.purple{background:#FDF4FF;}
 .feature-icon img{width:36px;height:36px;object-fit:contain;}
 .feature-photo{width:100%;height:140px;border-radius:12px;object-fit:cover;margin-bottom:16px;}
 .feature-title{font-size:16px;font-weight:700;color:#1F2937;margin-bottom:8px;}
 .feature-desc{font-size:13px;color:#6B7280;line-height:1.65;}
+.feature-tags{display:flex;flex-wrap:wrap;gap:4px;justify-content:center;margin-top:10px;}
+.feature-tag{font-size:10px;font-weight:600;padding:3px 8px;border-radius:10px;background:#ECFDF5;color:#065F46;}
+.feature-tag.orange{background:#FFF7ED;color:#9A3412;}
+.feature-tag.blue{background:#EFF6FF;color:#1E40AF;}
+.feature-tag.purple{background:#FDF4FF;color:#6B21A8;}
 @media(max-width:900px){.features-grid{grid-template-columns:repeat(2,1fr);}}
 @media(max-width:520px){.features-grid{grid-template-columns:1fr;}}
 
@@ -180,14 +219,23 @@ img{max-width:100%;display:block;}
 /* ===== TESTIMONIALS ===== */
 .section-testimonials{padding:72px 20px;background:#fff;}
 .testimonials-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px;}
-.testimonial-card{background:#F9FAFB;border-radius:20px;padding:24px;border:1px solid #E5E7EB;position:relative;}
+.testimonial-card{background:#F9FAFB;border-radius:20px;padding:24px;border:1px solid #E5E7EB;position:relative;overflow:hidden;}
+.testimonial-card-accent{position:absolute;top:0;left:0;right:0;height:4px;}
+.testimonial-card-accent.green{background:#10B981;}
+.testimonial-card-accent.orange{background:#F59E0B;}
+.testimonial-card-accent.blue{background:#3B82F6;}
 .testimonial-stars{color:#FBBF24;font-size:14px;margin-bottom:12px;}
 .testimonial-text{font-size:14px;color:#374151;line-height:1.75;margin-bottom:16px;}
 .testimonial-user{display:flex;align-items:center;gap:12px;}
-.testimonial-avatar{width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid #A7F3D0;}
+.testimonial-avatar{width:60px;height:60px;border-radius:50%;object-fit:cover;border:3px solid #A7F3D0;flex-shrink:0;}
 .testimonial-name{font-size:13px;font-weight:700;color:#1F2937;}
-.testimonial-role{font-size:11px;color:#9CA3AF;}
-.testimonial-quote{position:absolute;top:20px;right:20px;font-size:40px;color:#A7F3D0;line-height:1;font-family:Georgia,serif;}
+.testimonial-role{font-size:11px;color:#9CA3AF;margin-top:2px;}
+.testimonial-badge{display:inline-block;font-size:10px;font-weight:700;padding:2px 8px;border-radius:8px;background:#ECFDF5;color:#065F46;margin-top:4px;}
+.testimonial-quote{position:absolute;top:20px;right:20px;font-size:48px;color:#A7F3D0;line-height:1;font-family:Georgia,serif;}
+.testimonials-banner{margin-top:48px;background:linear-gradient(135deg,#ECFDF5,#F0FDF4);border-radius:20px;padding:28px;display:flex;align-items:center;gap:32px;flex-wrap:wrap;}
+.testimonials-banner-stat{text-align:center;flex:1;min-width:100px;}
+.testimonials-banner-num{font-size:28px;font-weight:800;color:#10B981;}
+.testimonials-banner-label{font-size:12px;color:#374151;margin-top:4px;}
 @media(max-width:768px){.testimonials-grid{grid-template-columns:1fr;}}
 @media(max-width:960px){.testimonials-grid{grid-template-columns:repeat(2,1fr);}}
 
@@ -273,6 +321,7 @@ img{max-width:100%;display:block;}
         <span class="hero-badge">月齢4段階対応</span>
         <span class="hero-badge">登録不要</span>
         <span class="hero-badge">完全無料</span>
+        <span class="hero-badge supervisor">小児科医監修</span>
       </div>
       <h1 class="hero-title">
         赤ちゃんの<br>
@@ -292,10 +341,38 @@ img{max-width:100%;display:block;}
     </div>
     <div class="hero-image-wrap">
       <img src="../assets/photos/photo_02.jpg" alt="赤ちゃんと離乳食" class="hero-photo">
-      <div class="hero-photo-badge">
-        <img src="../assets/icons/split/03-01.png" alt="" class="hero-photo-badge-icon">
-        <div class="hero-photo-badge-text">
-          <strong>12,418+</strong>件の診断実績
+      <div class="hero-result-card">
+        <div class="hero-result-card-header">
+          🌿 診断結果プレビュー — 離乳食中期（7〜8ヶ月）
+        </div>
+        <div class="hero-chart-row">
+          <div class="hero-donut">
+            <span class="hero-donut-num">82%</span>
+          </div>
+          <div style="flex:1;">
+            <div style="font-size:11px;font-weight:700;color:#374151;margin-bottom:6px;">栄養バランス達成度</div>
+            <div class="hero-mini-label">🟢 鉄分</div>
+            <div class="hero-mini-bar-wrap"><div class="hero-mini-bar" style="width:78%;"></div></div>
+            <div class="hero-mini-label">🟢 たんぱく質</div>
+            <div class="hero-mini-bar-wrap"><div class="hero-mini-bar" style="width:85%;"></div></div>
+            <div class="hero-mini-label">🟡 カルシウム</div>
+            <div class="hero-mini-bar-wrap"><div class="hero-mini-bar" style="width:72%;background:#F59E0B;"></div></div>
+          </div>
+        </div>
+        <div style="font-size:11px;font-weight:700;color:#374151;margin-bottom:6px;">✅ おすすめ食材</div>
+        <div class="hero-food-row">
+          <div>
+            <img src="../assets/photos/photo_20.jpg" alt="7倍がゆ" class="hero-food-img">
+            <div class="hero-food-cap">7倍がゆ</div>
+          </div>
+          <div>
+            <img src="../assets/photos/photo_21.jpg" alt="白身魚" class="hero-food-img">
+            <div class="hero-food-cap">白身魚</div>
+          </div>
+          <div>
+            <img src="../assets/photos/photo_22.jpg" alt="豆腐" class="hero-food-img">
+            <div class="hero-food-cap">豆腐</div>
+          </div>
         </div>
       </div>
     </div>
@@ -328,6 +405,45 @@ img{max-width:100%;display:block;}
   <img src="../assets/photos/photo_12.jpg" alt="">
 </div>
 
+<!-- ===== AGE STAGE BAND ===== -->
+<section class="stage-band">
+  <div class="container">
+    <p class="section-label">STAGE GUIDE</p>
+    <h2 class="section-title">月齢4段階で完全サポート</h2>
+    <p class="section-sub">ゴックン期から卒業まで、赤ちゃんの成長に合わせた食材・固さ・量を提案</p>
+    <div class="stage-cards">
+      <div class="stage-card stage-card-1">
+        <span class="stage-badge">初期</span>
+        <img src="../assets/photos/photo_03.jpg" alt="初期 ゴックン期" class="stage-photo">
+        <div class="stage-age">5〜6ヶ月</div>
+        <div class="stage-name">ゴックン期</div>
+        <div class="stage-desc">なめらかにすりつぶした状態。1日1回・ポタージュ状の食材から慣れさせます。10倍がゆ・野菜ペーストが基本。</div>
+      </div>
+      <div class="stage-card stage-card-2">
+        <span class="stage-badge">中期</span>
+        <img src="../assets/photos/photo_04.jpg" alt="中期 モグモグ期" class="stage-photo">
+        <div class="stage-age">7〜8ヶ月</div>
+        <div class="stage-name">モグモグ期</div>
+        <div class="stage-desc">舌でつぶせる固さ。1日2回・食材のバリエーションを広げる時期。豆腐・白身魚・ほうれん草も試せます。</div>
+      </div>
+      <div class="stage-card stage-card-3">
+        <span class="stage-badge">後期</span>
+        <img src="../assets/photos/photo_05.jpg" alt="後期 カミカミ期" class="stage-photo">
+        <div class="stage-age">9〜11ヶ月</div>
+        <div class="stage-name">カミカミ期</div>
+        <div class="stage-desc">歯ぐきでつぶせる固さ。1日3回・手づかみ食べも始まります。軟飯・細かく刻んだ食材が目安。</div>
+      </div>
+      <div class="stage-card stage-card-4">
+        <span class="stage-badge">完了期</span>
+        <img src="../assets/photos/photo_06.jpg" alt="完了期 パクパク期" class="stage-photo">
+        <div class="stage-age">12〜18ヶ月</div>
+        <div class="stage-name">パクパク期</div>
+        <div class="stage-desc">歯でかみ切れる固さ。大人の食事に近づけ、一緒に食卓を楽しめます。軟らかいご飯・おかずが中心。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ===== FEATURES ===== -->
 <section class="section-features" id="features">
   <div class="container">
@@ -342,30 +458,46 @@ img{max-width:100%;display:block;}
         <img src="../assets/photos/photo_13.jpg" alt="月齢別提案" class="feature-photo">
         <div class="feature-title">月齢別に合わせた提案</div>
         <p class="feature-desc">5〜6ヶ月のゴックン期から12〜18ヶ月のパクパク期まで、月齢に合わせた食材・固さ・量を的確に提案します。</p>
+        <div class="feature-tags">
+          <span class="feature-tag">初期〜完了期</span>
+          <span class="feature-tag">4ステージ対応</span>
+        </div>
       </div>
       <div class="feature-card">
-        <div class="feature-icon">
+        <div class="feature-icon orange">
           <img src="../assets/icons/split/02-05.png" alt="アレルギー対応">
         </div>
         <img src="../assets/photos/photo_14.jpg" alt="アレルギー対応" class="feature-photo">
         <div class="feature-title">アレルギー対応で安心</div>
         <p class="feature-desc">卵・乳・小麦など主要アレルギー食材を自動除外。リスク食材への注意事項もわかりやすく表示します。</p>
+        <div class="feature-tags">
+          <span class="feature-tag orange">9種類対応</span>
+          <span class="feature-tag orange">自動除外</span>
+        </div>
       </div>
       <div class="feature-card">
-        <div class="feature-icon">
+        <div class="feature-icon blue">
           <img src="../assets/icons/split/02-08.png" alt="栄養バランス">
         </div>
         <img src="../assets/photos/photo_15.jpg" alt="栄養バランス" class="feature-photo">
         <div class="feature-title">栄養バランスを見える化</div>
         <p class="feature-desc">月齢別必要栄養素の達成度をグラフ表示。鉄分・カルシウム・たんぱく質など不足しがちな栄養を可視化します。</p>
+        <div class="feature-tags">
+          <span class="feature-tag blue">グラフ表示</span>
+          <span class="feature-tag blue">鉄分・Ca</span>
+        </div>
       </div>
       <div class="feature-card">
-        <div class="feature-icon">
+        <div class="feature-icon purple">
           <img src="../assets/icons/split/02-07.png" alt="時短レシピ">
         </div>
         <img src="../assets/photos/photo_16.jpg" alt="時短レシピ" class="feature-photo">
         <div class="feature-title">忙しい日に時短レシピ</div>
         <p class="feature-desc">週末まとめ作り・冷凍ストック術・市販品活用など、忙しいパパ・ママの実態に合わせた時短アドバイスを提供します。</p>
+        <div class="feature-tags">
+          <span class="feature-tag purple">冷凍対応</span>
+          <span class="feature-tag purple">市販品活用</span>
+        </div>
       </div>
     </div>
   </div>
@@ -616,30 +748,35 @@ img{max-width:100%;display:block;}
     <p class="section-sub">12,000件以上の診断から寄せられた声の一部をご紹介</p>
     <div class="testimonials-grid">
       <div class="testimonial-card">
+        <div class="testimonial-card-accent green"></div>
         <div class="testimonial-quote">"</div>
         <div class="testimonial-stars">★★★★★</div>
-        <p class="testimonial-text">月齢に合った食材がすぐ分かって助かりました。アレルギーがあってどれを食べさせていいか迷っていたのですが、安全食材リストで安心して進められました。</p>
+        <p class="testimonial-text">月齢に合った食材がすぐ分かって助かりました。アレルギーがあってどれを食べさせていいか迷っていたのですが、安全食材リストで安心して進められました。特に卵アレルギーの除外機能が本当に便利！</p>
         <div class="testimonial-user">
           <img src="../assets/photos/photo_09.jpg" alt="ユーザー" class="testimonial-avatar">
           <div>
             <div class="testimonial-name">K.Mさん</div>
             <div class="testimonial-role">7ヶ月の赤ちゃんのお母さん</div>
+            <div class="testimonial-badge">卵アレルギー対応</div>
           </div>
         </div>
       </div>
       <div class="testimonial-card">
+        <div class="testimonial-card-accent orange"></div>
         <div class="testimonial-quote">"</div>
         <div class="testimonial-stars">★★★★★</div>
-        <p class="testimonial-text">栄養バランスのグラフが見やすくて、何が不足しているか一目で分かります。レシピヒントも実践的で、時短まとめ作りが習慣になりました。</p>
+        <p class="testimonial-text">栄養バランスのグラフが見やすくて、何が不足しているか一目で分かります。レシピヒントも実践的で、時短まとめ作りが習慣になりました。毎週末の冷凍ストックが楽しくなりました。</p>
         <div class="testimonial-user">
           <img src="../assets/photos/photo_10.jpg" alt="ユーザー" class="testimonial-avatar">
           <div>
             <div class="testimonial-name">Y.Tさん</div>
             <div class="testimonial-role">9ヶ月の赤ちゃんのお父さん</div>
+            <div class="testimonial-badge">時短レシピ活用</div>
           </div>
         </div>
       </div>
       <div class="testimonial-card">
+        <div class="testimonial-card-accent blue"></div>
         <div class="testimonial-quote">"</div>
         <div class="testimonial-stars">★★★★☆</div>
         <p class="testimonial-text">登録不要ですぐ使えるのが良かったです。後期に入って何を食べさせていいか悩んでいたのですが、ステージ別の食材リストが充実していて参考になりました。</p>
@@ -648,8 +785,27 @@ img{max-width:100%;display:block;}
           <div>
             <div class="testimonial-name">A.Nさん</div>
             <div class="testimonial-role">10ヶ月の赤ちゃんのお母さん</div>
+            <div class="testimonial-badge">後期・カミカミ期</div>
           </div>
         </div>
+      </div>
+    </div>
+    <!-- Stats banner -->
+    <div class="testimonials-banner">
+      <div class="testimonials-banner-stat">
+        <div class="testimonials-banner-num">12,418<span style="font-size:16px;">+</span></div>
+        <div class="testimonials-banner-label">累計診断件数</div>
+      </div>
+      <div class="testimonials-banner-stat">
+        <div class="testimonials-banner-num">98<span style="font-size:16px;">%</span></div>
+        <div class="testimonials-banner-label">ユーザー満足度</div>
+      </div>
+      <div class="testimonials-banner-stat">
+        <div class="testimonials-banner-num">4.8<span style="font-size:16px;">/5.0</span></div>
+        <div class="testimonials-banner-label">平均評価</div>
+      </div>
+      <div style="flex:2;min-width:200px;text-align:center;">
+        <a href="../" class="btn-green">あなたも診断してみる →</a>
       </div>
     </div>
   </div>
